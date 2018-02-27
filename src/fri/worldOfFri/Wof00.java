@@ -9,6 +9,33 @@ import fri.worldOfFri.hra.Hra;
  * @author Lubomir Sadlon
  * @version 21.2.2012
  */
+/*
+- itemy
+    - kava z automatu
+    - navleky
+    - peniaze
+    - isic
+    - bageta
+    - ...
+- vyhra
+- questy
+    - dones mi kavu
+    - stratil som isic
+    - ziskaj navleky
+    - dostat sa do labaku (pomocou isicu a v navlekoch)
+- npc
+    - vratnicka
+    - upratovacka (nasla isic)
+    - dekan (chce kavu)
+    - studijne referentky
+    - student nejaky
+- talenty (skills)
+    - teleport po 3 kavach
+    - nerostrhnutie navlekov
+- zivoty + hunger
+- crafting
+- nepriatelia
+*/
 public class Wof00 {
 
     /**
