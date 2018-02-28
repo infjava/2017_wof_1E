@@ -13,7 +13,7 @@ package fri.worldOfFri.prikazy;
 public class NazvyPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
-        "chod", "ukonci", "pomoc"
+        "chod", "ukonci", "pomoc", "zober"
     };
 
     /**

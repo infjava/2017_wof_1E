@@ -11,6 +11,18 @@ import fri.worldOfFri.hra.Hra;
  */
 /*
 - itemy
+    - atributy
+        - nazov
+    - operacie:
+        - ziskat
+            > zober bageta
+        - zahodit
+            > zahod bageta
+        - pouzit
+        - predat
+        - kupit
+        - preskumat
+        - znicit
     - kava z automatu
     - navleky
     - peniaze

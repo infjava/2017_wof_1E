@@ -1,9 +1,7 @@
 package fri.worldOfFri.hra;
 
-import fri.worldOfFri.prostredie.Miestnost;
 import fri.worldOfFri.prikazy.Prikaz;
 import fri.worldOfFri.prikazy.Parser;
-import fri.worldOfFri.prostredie.Mapa;
 
 /**
  * Trieda Hra je hlavna trieda aplikacie "World of FRI".
@@ -27,17 +25,14 @@ import fri.worldOfFri.prostredie.Mapa;
  
 public class Hra  {
     private Parser parser;
-    private Miestnost aktualnaMiestnost;
+    private Hrac hrac;
     
     /**
      * Vytvori a inicializuje hru.
      */
     public Hra() {
-        Mapa mapa = new Mapa();
-        
-        this.aktualnaMiestnost = mapa.getStartovaciaMiestnost();
-        
         this.parser = new Parser();
+        this.hrac = new Hrac();
     }
 
 
@@ -72,7 +67,7 @@ public class Hra  {
         System.out.println("Zadaj 'pomoc' ak potrebujes pomoc.");
         System.out.println();
         System.out.print("Teraz si v miestnosti ");
-        this.aktualnaMiestnost.vypisInfo();
+        this.hrac.getAktualnaMiestnost().vypisInfo();
     }
 
     /**
@@ -100,6 +95,9 @@ public class Hra  {
                 return false;
             case "ukonci":
                 return this.ukonciHru(prikaz);
+            case "zober":
+                this.zoberPredmet(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -132,14 +130,10 @@ public class Hra  {
 
         String smer = prikaz.getParameter();
 
-        // Pokus o opustenie aktualnej miestnosti danym vychodom.
-        Miestnost novaMiestnost = this.aktualnaMiestnost.getVychod(smer);
-        if (novaMiestnost == null) {
-            System.out.println("Tam nie je vychod!");
+        if (this.hrac.chodSmerom(smer)) {
+            this.hrac.getAktualnaMiestnost().vypisInfo();
         } else {
-            this.aktualnaMiestnost = novaMiestnost;
-            System.out.print("Teraz si v miestnosti ");
-            this.aktualnaMiestnost.vypisInfo();
+            System.out.println("Tam nie je vychod!");
         }
     }
 
@@ -159,6 +153,12 @@ public class Hra  {
         } else {
             return true;
         }
+    }
+
+    private void zoberPredmet(Prikaz prikaz) {
+        String nazovPredmetu = prikaz.getParameter();
+        
+        this.hrac.zoberPredmet(nazovPredmetu);
     }
 
 }
