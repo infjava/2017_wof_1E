@@ -98,6 +98,15 @@ public class Hra  {
             case "zober":
                 this.zoberPredmet(prikaz);
                 return false;
+            case "staty":
+                this.zobrazStaty(prikaz);
+                return false;
+            case "zahod":
+                this.zahodPredmet(prikaz);
+                return false;
+            case "pouzi":
+                this.pouziPredmet(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -158,7 +167,25 @@ public class Hra  {
     private void zoberPredmet(Prikaz prikaz) {
         String nazovPredmetu = prikaz.getParameter();
         
-        this.hrac.zoberPredmet(nazovPredmetu);
+        if (!this.hrac.zoberPredmet(nazovPredmetu)) {
+            System.out.println("Taky predmet momentalne neviem zdvihnut");
+        }
     }
 
+    private void zobrazStaty(Prikaz prikaz) {
+        this.hrac.zobrazStaty();
+    }
+
+    private void zahodPredmet(Prikaz prikaz) {
+        String nazovPredmetu = prikaz.getParameter();
+        
+        if (!this.hrac.zahodPredmet(nazovPredmetu)) {
+            System.out.println("Taky predmet nemam v inventari");
+        }
+    }
+
+    private void pouziPredmet(Prikaz prikaz) {
+        String nazovPredmetu = prikaz.getParameter();
+        this.hrac.pouziPredmet(nazovPredmetu);
+    }
 }

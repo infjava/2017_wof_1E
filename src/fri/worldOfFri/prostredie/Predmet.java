@@ -11,12 +11,23 @@ package fri.worldOfFri.prostredie;
  */
 public class Predmet {
     private final String nazov;
+    private boolean obuty;
 
     Predmet(String nazov) {
         this.nazov = nazov;
+        this.obuty = false;
     }
 
     public String getNazov() {
         return this.nazov;
+    }
+
+    public void pouziSa() {
+        this.obuty = !this.obuty;
+        if (this.obuty) {
+            System.out.println("Obul si si " + this.nazov);
+        } else {
+            System.out.println("Vyzul si si " + this.nazov);
+        }
     }
 }

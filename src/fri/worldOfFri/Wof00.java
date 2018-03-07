@@ -19,10 +19,13 @@ import fri.worldOfFri.hra.Hra;
         - zahodit
             > zahod bageta
         - pouzit
+            > pouzi navleky
         - predat
         - kupit
         - preskumat
         - znicit
+        - zobraz staty
+            > staty
     - kava z automatu
     - navleky
     - peniaze

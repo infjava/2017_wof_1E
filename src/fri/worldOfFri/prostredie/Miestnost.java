@@ -68,7 +68,7 @@ public class Miestnost {
         }
     }
 
-    void polozPredmet(Predmet predmet) {
+    public void polozPredmet(Predmet predmet) {
         this.predmety.put(predmet.getNazov(), predmet);
     }
 
