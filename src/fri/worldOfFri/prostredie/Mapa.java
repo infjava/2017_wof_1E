@@ -29,8 +29,8 @@ public class Mapa {
         
         terasa.nastavVychod("vychod", vratnica);
         
-        terasa.polozPredmet(new Predmet("navleky"));
-        terasa.polozPredmet(new Predmet("bageta"));
+        terasa.polozPredmet(new Navleky());
+        terasa.polozPredmet(new Bageta());
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);

@@ -5,6 +5,7 @@
  */
 package fri.worldOfFri.hra;
 
+import fri.worldOfFri.prostredie.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
 import fri.worldOfFri.prostredie.Predmet;
@@ -16,13 +17,13 @@ import java.util.HashMap;
  */
 class Hrac {
     private Miestnost aktualnaMiestnost;
-    private HashMap<String, Predmet> inventar;
+    private HashMap<String, IPredmet> inventar;
 
     Hrac() {
         Mapa mapa = new Mapa();
         
         this.aktualnaMiestnost = mapa.getStartovaciaMiestnost();
-        this.inventar = new HashMap<String, Predmet>();
+        this.inventar = new HashMap<String, IPredmet>();
     }
 
     public Miestnost getAktualnaMiestnost() {
@@ -41,7 +42,7 @@ class Hrac {
     }
 
     boolean zoberPredmet(String nazovPredmetu) {
-        Predmet predmet = this.aktualnaMiestnost.zoberPredmet(nazovPredmetu);
+        IPredmet predmet = this.aktualnaMiestnost.zoberPredmet(nazovPredmetu);
         
         if (predmet == null) {
             return false;
@@ -64,7 +65,7 @@ class Hrac {
     }
 
     boolean zahodPredmet(String nazovPredmetu) {
-        Predmet predmet = this.inventar.remove(nazovPredmetu);
+        IPredmet predmet = this.inventar.remove(nazovPredmetu);
         
         if (predmet == null) {
             return false;
@@ -75,7 +76,7 @@ class Hrac {
     }
 
     void pouziPredmet(String nazovPredmetu) {
-        Predmet predmet = this.inventar.get(nazovPredmetu);
+        IPredmet predmet = this.inventar.get(nazovPredmetu);
         
         if (predmet == null) {
             return;

@@ -9,29 +9,20 @@ package fri.worldOfFri.prostredie;
  *
  * @author janik
  */
-public class Predmet {
+public class Predmet implements IPredmet {
     private final String nazov;
-    private boolean obuty;
 
     Predmet(String nazov) {
         this.nazov = nazov;
-        this.obuty = false;
     }
 
+    @Override
     public String getNazov() {
         return this.nazov;
     }
 
+    @Override
     public void pouziSa() {
-        if (this.nazov.equals("navleky")) {
-            this.obuty = !this.obuty;
-            if (this.obuty) {
-                System.out.println("Obul si si " + this.nazov);
-            } else {
-                System.out.println("Vyzul si si " + this.nazov);
-            }
-        } else if (this.nazov.equals("bageta")) {
-            System.out.println("Zjedol si bagetu");
-        }
+        System.out.println(this.nazov + " sa neda nijako pouzit");
     }
 }
