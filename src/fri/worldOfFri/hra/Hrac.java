@@ -5,6 +5,7 @@
  */
 package fri.worldOfFri.hra;
 
+import fri.worldOfFri.prostredie.Bageta;
 import fri.worldOfFri.prostredie.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
@@ -102,5 +103,9 @@ public class Hrac {
         if (this.hungerBar > Hrac.MAX_HUNGER_BAR) {
             this.hungerBar = Hrac.MAX_HUNGER_BAR;
         }
+    }
+
+    public void zrusPredmet(IPredmet predmet) {
+        this.inventar.remove(predmet.getNazov());
     }
 }

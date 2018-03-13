@@ -20,5 +20,6 @@ public class Bageta implements IPredmet {
         System.out.println("Zjedol si bagetu");
         
         hrac.zjedz(15);
+        hrac.zrusPredmet(this);
     }
 }
