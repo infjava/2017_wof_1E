@@ -23,11 +23,15 @@ public class Predmet {
     }
 
     public void pouziSa() {
-        this.obuty = !this.obuty;
-        if (this.obuty) {
-            System.out.println("Obul si si " + this.nazov);
-        } else {
-            System.out.println("Vyzul si si " + this.nazov);
+        if (this.nazov.equals("navleky")) {
+            this.obuty = !this.obuty;
+            if (this.obuty) {
+                System.out.println("Obul si si " + this.nazov);
+            } else {
+                System.out.println("Vyzul si si " + this.nazov);
+            }
+        } else if (this.nazov.equals("bageta")) {
+            System.out.println("Zjedol si bagetu");
         }
     }
 }
