@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.hra.Hrac;
+
 
 public class Bageta implements IPredmet {
 
@@ -14,7 +16,9 @@ public class Bageta implements IPredmet {
     }
 
     @Override
-    public void pouziSa() {
+    public void pouziSa(Hrac hrac) {
         System.out.println("Zjedol si bagetu");
+        
+        hrac.zjedz(15);
     }
 }

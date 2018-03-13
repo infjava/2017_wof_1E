@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.hra.Hrac;
+
 /**
  *
  * @author janik
@@ -22,7 +24,7 @@ public class Predmet implements IPredmet {
     }
 
     @Override
-    public void pouziSa() {
+    public void pouziSa(Hrac hrac) {
         System.out.println(this.nazov + " sa neda nijako pouzit");
     }
 }

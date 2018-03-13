@@ -8,22 +8,26 @@ package fri.worldOfFri.hra;
 import fri.worldOfFri.prostredie.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
-import fri.worldOfFri.prostredie.Predmet;
 import java.util.HashMap;
 
 /**
  *
  * @author janik
  */
-class Hrac {
+public class Hrac {
+    private static final int MAX_HUNGER_BAR = 15;
+    
     private Miestnost aktualnaMiestnost;
     private HashMap<String, IPredmet> inventar;
+    private int hungerBar;
 
     Hrac() {
         Mapa mapa = new Mapa();
         
         this.aktualnaMiestnost = mapa.getStartovaciaMiestnost();
         this.inventar = new HashMap<String, IPredmet>();
+        
+        this.hungerBar = Hrac.MAX_HUNGER_BAR;
     }
 
     public Miestnost getAktualnaMiestnost() {
@@ -31,10 +35,15 @@ class Hrac {
     }
     
     public boolean chodSmerom(String smer) {
+        if (this.hungerBar == 0) {
+            return false;
+        }
+        
         Miestnost nova = this.aktualnaMiestnost.getVychod(smer);
         
         if (nova != null) {
             this.aktualnaMiestnost = nova;
+            this.hungerBar--;
             return true;
         } else {
             return false;
@@ -53,6 +62,8 @@ class Hrac {
     }
 
     void zobrazStaty() {
+        System.out.println("Hunger bar: " + this.hungerBar);
+        
         if (!this.inventar.isEmpty()) {
             System.out.println("Inventar:");
             
@@ -82,6 +93,14 @@ class Hrac {
             return;
         }
         
-        predmet.pouziSa();
+        predmet.pouziSa(this);
+    }
+
+    public void zjedz(int energia) {
+        this.hungerBar += energia;
+        
+        if (this.hungerBar > Hrac.MAX_HUNGER_BAR) {
+            this.hungerBar = Hrac.MAX_HUNGER_BAR;
+        }
     }
 }

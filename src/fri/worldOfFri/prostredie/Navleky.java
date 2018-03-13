@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.hra.Hrac;
+
 
 public class Navleky implements IPredmet {
     private boolean obute;
@@ -19,7 +21,7 @@ public class Navleky implements IPredmet {
     }
 
     @Override
-    public void pouziSa() {
+    public void pouziSa(Hrac hrac) {
         this.obute = !this.obute;
         if (this.obute) {
             System.out.println("Obul si si navleky");

@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.hra.Hrac;
+
 /**
  *
  * @author janik
@@ -13,6 +15,6 @@ public interface IPredmet {
 
     String getNazov();
 
-    void pouziSa();
+    void pouziSa(Hrac hrac);
     
 }
