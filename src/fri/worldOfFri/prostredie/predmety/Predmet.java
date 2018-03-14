@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
 

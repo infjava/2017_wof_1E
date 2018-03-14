@@ -5,6 +5,10 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.prostredie.predmety.Bageta;
+import fri.worldOfFri.prostredie.predmety.Peniaze;
+import fri.worldOfFri.prostredie.predmety.Navleky;
+
 /**
  *
  * @author janik

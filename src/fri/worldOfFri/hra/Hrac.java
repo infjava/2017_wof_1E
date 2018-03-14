@@ -5,7 +5,7 @@
  */
 package fri.worldOfFri.hra;
 
-import fri.worldOfFri.prostredie.IPredmet;
+import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
 import java.util.HashMap;
