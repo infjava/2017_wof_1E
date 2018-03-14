@@ -31,6 +31,7 @@ public class Mapa {
         
         terasa.polozPredmet(new Navleky());
         terasa.polozPredmet(new Bageta());
+        terasa.polozPredmet(new Peniaze());
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);

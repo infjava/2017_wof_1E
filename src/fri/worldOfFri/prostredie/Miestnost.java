@@ -34,6 +34,10 @@ public class Miestnost {
         this.popisMiestnosti = popis;
     }
 
+    public String getPopisMiestnosti() {
+        return this.popisMiestnosti;
+    }
+
     /**
      * Nastavi vychody z miestnosti. Kazdy vychod je urceny bud odkazom 
      * na miestnost alebo hodnotou null, ak vychod tym smerom neexistuje.
