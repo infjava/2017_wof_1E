@@ -5,7 +5,6 @@
  */
 package fri.worldOfFri.hra;
 
-import fri.worldOfFri.prostredie.Bageta;
 import fri.worldOfFri.prostredie.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
@@ -77,12 +76,17 @@ public class Hrac {
     }
 
     boolean zahodPredmet(String nazovPredmetu) {
-        IPredmet predmet = this.inventar.remove(nazovPredmetu);
+        IPredmet predmet = this.inventar.get(nazovPredmetu);
         
         if (predmet == null) {
             return false;
         }
         
+        if (!predmet.jeZahoditelny()) {
+            return false;
+        }
+        
+        this.inventar.remove(nazovPredmetu);
         this.aktualnaMiestnost.polozPredmet(predmet);
         return true;
     }

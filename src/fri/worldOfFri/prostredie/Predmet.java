@@ -27,4 +27,9 @@ public class Predmet implements IPredmet {
     public void pouziSa(Hrac hrac) {
         System.out.println(this.nazov + " sa neda nijako pouzit");
     }
+
+    @Override
+    public boolean jeZahoditelny() {
+        return true;
+    }
 }

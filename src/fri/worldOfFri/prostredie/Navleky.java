@@ -29,4 +29,9 @@ public class Navleky implements IPredmet {
             System.out.println("Vyzul si si navleky");
         }
     }
+
+    @Override
+    public boolean jeZahoditelny() {
+        return !this.obute;
+    }
 }

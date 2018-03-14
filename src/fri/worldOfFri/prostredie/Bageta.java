@@ -22,4 +22,9 @@ public class Bageta implements IPredmet {
         hrac.zjedz(15);
         hrac.zrusPredmet(this);
     }
+
+    @Override
+    public boolean jeZahoditelny() {
+        return true;
+    }
 }
