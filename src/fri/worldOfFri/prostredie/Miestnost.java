@@ -53,6 +53,10 @@ public class Miestnost {
     public Miestnost getVychod(String smer) {
         return this.vychody.get(smer);
     }
+    
+    public Iterable<String> getVychody() {
+        return this.vychody.keySet();
+    }
 
     public void vypisInfo() {
         System.out.println(this.popisMiestnosti);

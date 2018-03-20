@@ -8,6 +8,8 @@ package fri.worldOfFri.prostredie;
 import fri.worldOfFri.prostredie.predmety.Bageta;
 import fri.worldOfFri.prostredie.predmety.Peniaze;
 import fri.worldOfFri.prostredie.predmety.Navleky;
+import fri.worldOfFri.prostredie.predmety.PredmetMapa;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,11 +18,14 @@ import fri.worldOfFri.prostredie.predmety.Navleky;
 public class Mapa {
 
     private final Miestnost startovaciaMiestnost;
+    private final ArrayList<Miestnost> zoznamMiestnosti;
 
     /**
      * Vytvori mapu hry - miestnosti.
      */
     public Mapa() {
+        this.zoznamMiestnosti = new ArrayList<Miestnost>();
+        
         Miestnost terasa = new Miestnost("Terasa - tu byva FRIfest");
         Miestnost vratnica = new Miestnost("Vratnica - tu byva vratnicka");
         Miestnost ic = new Miestnost("IC - tu byvaju knihy");
@@ -31,11 +36,22 @@ public class Mapa {
         Miestnost chillZone = new Miestnost("Chill Zone - tu byva vela studentov");
         Miestnost b1 = new Miestnost("B1 - tu byva ticho");
         
+        this.zoznamMiestnosti.add(terasa);
+        this.zoznamMiestnosti.add(vratnica);
+        this.zoznamMiestnosti.add(ic);
+        this.zoznamMiestnosti.add(chodbaA);
+        this.zoznamMiestnosti.add(wc);
+        this.zoznamMiestnosti.add(bufet);
+        this.zoznamMiestnosti.add(chodbaB);
+        this.zoznamMiestnosti.add(chillZone);
+        this.zoznamMiestnosti.add(b1);
+        
         terasa.nastavVychod("vychod", vratnica);
         
         terasa.polozPredmet(new Navleky());
         terasa.polozPredmet(new Bageta());
         terasa.polozPredmet(new Peniaze());
+        terasa.polozPredmet(new PredmetMapa());
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);
@@ -65,5 +81,9 @@ public class Mapa {
 
     public Miestnost getStartovaciaMiestnost() {
         return this.startovaciaMiestnost;
+    }
+
+    public Iterable<Miestnost> getZoznamMiestnosti() {
+        return this.zoznamMiestnosti;
     }
 }

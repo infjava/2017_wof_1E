@@ -20,14 +20,19 @@ public class Hrac {
     private Miestnost aktualnaMiestnost;
     private HashMap<String, IPredmet> inventar;
     private int hungerBar;
+    private final Mapa mapa;
 
     Hrac() {
-        Mapa mapa = new Mapa();
+        this.mapa = new Mapa();
         
-        this.aktualnaMiestnost = mapa.getStartovaciaMiestnost();
+        this.aktualnaMiestnost = this.mapa.getStartovaciaMiestnost();
         this.inventar = new HashMap<String, IPredmet>();
         
         this.hungerBar = Hrac.MAX_HUNGER_BAR;
+    }
+
+    public Mapa getMapa() {
+        return this.mapa;
     }
 
     public Miestnost getAktualnaMiestnost() {
