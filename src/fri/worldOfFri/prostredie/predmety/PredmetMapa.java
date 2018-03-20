@@ -23,7 +23,9 @@ public class PredmetMapa implements IPredmet {
             System.out.println("- " + miestnost.getPopisMiestnosti());
             
             for (String vychod : miestnost.getVychody()) {
-                System.out.println("  * " + vychod + " => miestnost");
+                Miestnost ciel = miestnost.getVychod(vychod);
+                
+                System.out.println("  * " + vychod + " => " + ciel.getNazov());
             }
         }
     }

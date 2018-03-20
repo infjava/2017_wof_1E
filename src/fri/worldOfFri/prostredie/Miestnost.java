@@ -38,6 +38,11 @@ public class Miestnost {
     public String getPopisMiestnosti() {
         return this.popisMiestnosti;
     }
+    
+    public String getNazov() {
+        String[] nazovAPopis = this.popisMiestnosti.split(" - ");
+        return nazovAPopis[0];
+    }
 
     /**
      * Nastavi vychody z miestnosti. Kazdy vychod je urceny bud odkazom 
