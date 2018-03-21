@@ -3,6 +3,7 @@ package fri.worldOfFri.prostredie;
 
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -88,5 +89,19 @@ public class Miestnost {
 
     public IPredmet zoberPredmet(String nazovPredmetu) {
         return this.predmety.remove(nazovPredmetu);
+    }
+
+    Iterable<Miestnost> getCieloveMiestnosti() {
+        return this.vychody.values();
+    }
+    
+    public String getNazovVychoduDo(Miestnost miestnost) {
+        for (Map.Entry<String, Miestnost> dvojica : this.vychody.entrySet()) {
+            if (dvojica.getValue() == miestnost) {
+                return dvojica.getKey();
+            }
+        }
+        
+        return null;
     }
 }
