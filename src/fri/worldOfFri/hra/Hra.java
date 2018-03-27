@@ -107,6 +107,9 @@ public class Hra  {
             case "pouzi":
                 this.pouziPredmet(prikaz);
                 return false;
+            case "hovor":
+                this.hovorSNpc(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -187,5 +190,10 @@ public class Hra  {
     private void pouziPredmet(Prikaz prikaz) {
         String nazovPredmetu = prikaz.getParameter();
         this.hrac.pouziPredmet(nazovPredmetu);
+    }
+
+    private void hovorSNpc(Prikaz prikaz) {
+        String menoNpc = prikaz.getParameter();
+        this.hrac.hovorSNpc(menoNpc);
     }
 }

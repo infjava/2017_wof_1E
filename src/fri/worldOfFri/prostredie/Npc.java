@@ -21,4 +21,7 @@ public class Npc {
         return this.meno;
     }
     
+    public void rozhovor() {
+        System.out.println("Hovorim s " + this.meno);
+    }
 }
