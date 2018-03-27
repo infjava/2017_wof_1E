@@ -51,6 +51,80 @@ import fri.worldOfFri.hra.Hra;
 - crafting
 - nepriatelia
 */
+/*
+...
+Npc: dekan
+> hovor dekan
+Dobry den.
+1) Dobry!
+2) Hee?
+> 1
+Chcem kavu.
+1) Okej, zozeniem Vam
+2) Co za to?
+3) Aj ja
+> 1
+Dobre
+---------------------------
+...
+Npc: dekan
+> hovor dekan
+Dobry den.
+1) Dobry!
+2) Hee?
+> 1
+Chcem kavu.
+1) Okej, zozeniem Vam
+2) Co za to?
+3) Aj ja
+> 2
+Bagetu
+1) Okej, zozeniem Vam
+2) Nechcem
+> 1
+Dobre
+---------------------------
+...
+Npc: dekan
+> hovor dekan
+Dobry den.
+1) Dobry!
+2) Hee?
+> 1
+Chcem kavu.
+1) Okej, zozeniem Vam
+2) Co za to?
+3) Aj ja
+> 2
+Bagetu
+1) Okej, zozeniem Vam
+2) Nechcem
+> 2
+Dobre
+---------------------------
+...
+Npc: dekan
+> hovor dekan
+Dobry den.
+1) Dobry!
+2) Hee?
+> 1
+Chcem kavu.
+1) Okej, zozeniem Vam
+2) Co za to?
+3) Aj ja
+> 3
+Fight!
+---------------------------
+...
+Npc: dekan
+> hovor dekan
+Dobry den.
+1) Dobry!
+2) Hee?
+> 2
+Fight!
+*/
 public class Wof00 {
 
     /**
