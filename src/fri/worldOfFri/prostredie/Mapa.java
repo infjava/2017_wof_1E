@@ -55,7 +55,24 @@ public class Mapa {
         terasa.polozPredmet(new PredmetMapa());
         terasa.polozPredmet(new Navigacia());
         
-        terasa.postavNpc(new Npc("dekan"));
+        PoziciaVRozhovore dobryDen = new PoziciaVRozhovore("Dobry den.");
+        PoziciaVRozhovore chcemKavu = new PoziciaVRozhovore("Chcem kavu.");
+        PoziciaVRozhovore dobre = new PoziciaVRozhovore("Dobre");
+        PoziciaVRozhovore bageta = new PoziciaVRozhovore("Bageta");
+        PoziciaVRozhovore fight = new PoziciaVRozhovore("Fight!");
+        PoziciaVRozhovore ineDobre = new PoziciaVRozhovore("Dobre");
+        
+        dobryDen.pridajMoznost("Dobry!", chcemKavu);
+        dobryDen.pridajMoznost("Hee?", fight);
+        
+        chcemKavu.pridajMoznost("Okej, zozeniem vam", dobre);
+        chcemKavu.pridajMoznost("Co za to?", bageta);
+        chcemKavu.pridajMoznost("Aj ja", fight);
+        
+        bageta.pridajMoznost("Okej, zozeniem vam", dobre);
+        bageta.pridajMoznost("Nechcem", ineDobre);
+        
+        terasa.postavNpc(new Npc("dekan", dobryDen));
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);

@@ -11,10 +11,12 @@ package fri.worldOfFri.prostredie;
  */
 public class Npc {
 
-    private String meno;
+    private final String meno;
+    private final PoziciaVRozhovore zaciatocnaPozicia;
 
-    public Npc(String meno) {
+    Npc(String meno, PoziciaVRozhovore zaciatocnaPozicia) {
         this.meno = meno;
+        this.zaciatocnaPozicia = zaciatocnaPozicia;
     }
 
     String getMeno() {
@@ -22,6 +24,6 @@ public class Npc {
     }
     
     public void rozhovor() {
-        System.out.println("Hovorim s " + this.meno);
+        System.out.println(this.zaciatocnaPozicia.getReplikaNpc());
     }
 }
