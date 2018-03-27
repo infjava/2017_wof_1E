@@ -55,6 +55,8 @@ public class Mapa {
         terasa.polozPredmet(new PredmetMapa());
         terasa.polozPredmet(new Navigacia());
         
+        terasa.postavNpc(new Npc("dekan"));
+        
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);
         vratnica.nastavVychod("sever", chodbaA);

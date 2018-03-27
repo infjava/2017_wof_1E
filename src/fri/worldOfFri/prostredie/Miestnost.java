@@ -22,6 +22,7 @@ public class Miestnost {
     private String popisMiestnosti;
     private HashMap<String, Miestnost> vychody;
     private HashMap<String, IPredmet> predmety;
+    private HashMap<String, Npc> npccka;
 
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
@@ -33,6 +34,7 @@ public class Miestnost {
     public Miestnost(String popis) {
         this.vychody = new HashMap<String, Miestnost>();
         this.predmety = new HashMap<String, IPredmet>();
+        this.npccka = new HashMap<String, Npc>();
         this.popisMiestnosti = popis;
     }
 
@@ -69,6 +71,7 @@ public class Miestnost {
         
         this.vypisZoznam("Vychody", this.vychody.keySet());
         this.vypisZoznam("Predmety", this.predmety.keySet());
+        this.vypisZoznam("Npc", this.npccka.keySet());
     }
 
     private void vypisZoznam(String popis, Set<String> polozky) {
@@ -103,5 +106,9 @@ public class Miestnost {
         }
         
         return null;
+    }
+
+    void postavNpc(Npc npc) {
+        this.npccka.put(npc.getMeno(), npc);
     }
 }
