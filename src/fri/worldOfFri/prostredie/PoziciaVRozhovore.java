@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author janik
@@ -12,16 +14,26 @@ package fri.worldOfFri.prostredie;
 class PoziciaVRozhovore {
 
     private final String replikaNpc;
+    private final ArrayList<String> replikyHraca;
 
     PoziciaVRozhovore(String replikaNpc) {
         this.replikaNpc = replikaNpc;
+        this.replikyHraca = new ArrayList<String>();
     }
 
-    void pridajMoznost(String dobry, PoziciaVRozhovore chcemKavu) {
-        
+    void pridajMoznost(String replikaHraca, PoziciaVRozhovore dalsiaPozicia) {
+        this.replikyHraca.add(replikaHraca);
     }
 
     String getReplikaNpc() {
         return this.replikaNpc;
+    }
+
+    void vypisMoznosti() {
+        int pocitadloReplik = 1;
+        for (String replika : this.replikyHraca) {
+            System.out.format("%d) %s%n", pocitadloReplik, replika);
+            pocitadloReplik++;
+        }
     }
 }

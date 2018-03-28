@@ -25,5 +25,7 @@ public class Npc {
     
     public void rozhovor() {
         System.out.println(this.zaciatocnaPozicia.getReplikaNpc());
+        
+        this.zaciatocnaPozicia.vypisMoznosti();
     }
 }
