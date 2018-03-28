@@ -39,8 +39,12 @@ public class Npc {
             
             aktualna.vypisMoznosti();
             
-            System.out.print("> ");
-            int moznost = vstup.nextInt();
+            int moznost;
+            final int pocetMoznosti = aktualna.getPocetMoznosti();
+            do {                
+                System.out.format("(1-%d)> ", pocetMoznosti);
+                moznost = vstup.nextInt();
+            } while (moznost > pocetMoznosti || moznost < 1);
             
             aktualna = aktualna.getDalsiaPozicia(moznost);
         }

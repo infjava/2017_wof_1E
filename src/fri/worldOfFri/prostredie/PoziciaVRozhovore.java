@@ -44,4 +44,8 @@ class PoziciaVRozhovore {
     public boolean jeKoniec() {
         return this.replikyHraca.isEmpty();
     }
+
+    int getPocetMoznosti() {
+        return this.replikyHraca.size();
+    }
 }
