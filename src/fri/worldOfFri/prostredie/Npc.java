@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.Scanner;
+
 /**
  *
  * @author janik
@@ -24,8 +26,16 @@ public class Npc {
     }
     
     public void rozhovor() {
+        Scanner vstup = new Scanner(System.in);
+        
         System.out.println(this.zaciatocnaPozicia.getReplikaNpc());
         
         this.zaciatocnaPozicia.vypisMoznosti();
+        
+        System.out.print("> ");
+        int moznost = vstup.nextInt();
+        
+        PoziciaVRozhovore nova = this.zaciatocnaPozicia.getDalsiaPozicia(moznost);
+        System.out.println(nova.getReplikaNpc());
     }
 }

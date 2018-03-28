@@ -14,15 +14,15 @@ import java.util.ArrayList;
 class PoziciaVRozhovore {
 
     private final String replikaNpc;
-    private final ArrayList<String> replikyHraca;
+    private final ArrayList<MoznostVRozhovore> replikyHraca;
 
     PoziciaVRozhovore(String replikaNpc) {
         this.replikaNpc = replikaNpc;
-        this.replikyHraca = new ArrayList<String>();
+        this.replikyHraca = new ArrayList<MoznostVRozhovore>();
     }
 
     void pridajMoznost(String replikaHraca, PoziciaVRozhovore dalsiaPozicia) {
-        this.replikyHraca.add(replikaHraca);
+        this.replikyHraca.add(new MoznostVRozhovore(replikaHraca, dalsiaPozicia));
     }
 
     String getReplikaNpc() {
@@ -31,9 +31,13 @@ class PoziciaVRozhovore {
 
     void vypisMoznosti() {
         int pocitadloReplik = 1;
-        for (String replika : this.replikyHraca) {
-            System.out.format("%d) %s%n", pocitadloReplik, replika);
+        for (MoznostVRozhovore replika : this.replikyHraca) {
+            System.out.format("%d) %s%n", pocitadloReplik, replika.getReplikaHraca());
             pocitadloReplik++;
         }
+    }
+
+    PoziciaVRozhovore getDalsiaPozicia(int moznost) {
+        return this.replikyHraca.get(moznost - 1).getDalsiaPozicia();
     }
 }
