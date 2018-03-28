@@ -40,4 +40,8 @@ class PoziciaVRozhovore {
     PoziciaVRozhovore getDalsiaPozicia(int moznost) {
         return this.replikyHraca.get(moznost - 1).getDalsiaPozicia();
     }
+    
+    public boolean jeKoniec() {
+        return this.replikyHraca.isEmpty();
+    }
 }

@@ -28,14 +28,21 @@ public class Npc {
     public void rozhovor() {
         Scanner vstup = new Scanner(System.in);
         
-        System.out.println(this.zaciatocnaPozicia.getReplikaNpc());
+        PoziciaVRozhovore aktualna = this.zaciatocnaPozicia;
         
-        this.zaciatocnaPozicia.vypisMoznosti();
-        
-        System.out.print("> ");
-        int moznost = vstup.nextInt();
-        
-        PoziciaVRozhovore nova = this.zaciatocnaPozicia.getDalsiaPozicia(moznost);
-        System.out.println(nova.getReplikaNpc());
+        for (;;) {
+            System.out.println(aktualna.getReplikaNpc());
+            
+            if (aktualna.jeKoniec()) {
+                return;
+            }
+            
+            aktualna.vypisMoznosti();
+            
+            System.out.print("> ");
+            int moznost = vstup.nextInt();
+            
+            aktualna = aktualna.getDalsiaPozicia(moznost);
+        }
     }
 }
