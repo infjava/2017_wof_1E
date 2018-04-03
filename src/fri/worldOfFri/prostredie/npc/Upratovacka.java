@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.prostredie.npc.Npc;
 import java.util.Calendar;
 import java.util.Date;
 

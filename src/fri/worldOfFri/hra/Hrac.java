@@ -8,7 +8,7 @@ package fri.worldOfFri.hra;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
-import fri.worldOfFri.prostredie.Npc;
+import fri.worldOfFri.prostredie.npc.Npc;
 import java.util.HashMap;
 
 /**

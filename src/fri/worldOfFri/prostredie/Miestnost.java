@@ -1,6 +1,7 @@
 package fri.worldOfFri.prostredie;
 
 
+import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import java.util.HashMap;
 import java.util.Map;

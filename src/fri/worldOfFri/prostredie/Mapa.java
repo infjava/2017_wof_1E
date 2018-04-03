@@ -5,6 +5,9 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovore;
+import fri.worldOfFri.prostredie.npc.Upratovacka;
+import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.predmety.Bageta;
 import fri.worldOfFri.prostredie.predmety.Navigacia;
 import fri.worldOfFri.prostredie.predmety.Peniaze;
