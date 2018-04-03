@@ -31,6 +31,7 @@ public class Npc {
         PoziciaVRozhovore aktualna = this.zaciatocnaPozicia;
         
         for (;;) {
+            aktualna.vykonajAkciu();
             System.out.println(aktualna.getReplikaNpc());
             
             if (aktualna.jeKoniec()) {

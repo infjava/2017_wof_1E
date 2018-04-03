@@ -49,4 +49,7 @@ public class PoziciaVRozhovore {
     public int getPocetMoznosti() {
         return this.replikyHraca.size();
     }
+
+    void vykonajAkciu() {
+    }
 }
