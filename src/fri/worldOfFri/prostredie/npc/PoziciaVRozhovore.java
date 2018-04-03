@@ -5,6 +5,7 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
 import fri.worldOfFri.prostredie.npc.MoznostVRozhovore;
 import java.util.ArrayList;
 
@@ -50,6 +51,6 @@ public class PoziciaVRozhovore {
         return this.replikyHraca.size();
     }
 
-    void vykonajAkciu() {
+    void vykonajAkciu(Hrac hrac) {
     }
 }

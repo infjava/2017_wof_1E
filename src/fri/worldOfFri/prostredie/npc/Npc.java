@@ -5,6 +5,7 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
 import java.util.Scanner;
 
 /**
@@ -25,13 +26,13 @@ public class Npc {
         return this.meno;
     }
     
-    public void rozhovor() {
+    public void rozhovor(Hrac hrac) {
         Scanner vstup = new Scanner(System.in);
         
         PoziciaVRozhovore aktualna = this.zaciatocnaPozicia;
         
         for (;;) {
-            aktualna.vykonajAkciu();
+            aktualna.vykonajAkciu(hrac);
             System.out.println(aktualna.getReplikaNpc());
             
             if (aktualna.jeKoniec()) {

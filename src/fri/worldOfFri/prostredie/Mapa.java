@@ -8,7 +8,9 @@ package fri.worldOfFri.prostredie;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovore;
 import fri.worldOfFri.prostredie.npc.Upratovacka;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSPredmetom;
 import fri.worldOfFri.prostredie.predmety.Bageta;
+import fri.worldOfFri.prostredie.predmety.Isic;
 import fri.worldOfFri.prostredie.predmety.Navigacia;
 import fri.worldOfFri.prostredie.predmety.Peniaze;
 import fri.worldOfFri.prostredie.predmety.Navleky;
@@ -80,7 +82,7 @@ public class Mapa {
         
         //Rozhovor upratovacka
         PoziciaVRozhovore dobryDenIsic = new PoziciaVRozhovore("Dobry den, nieje toto vas isic?");
-        PoziciaVRozhovore nechSaPaciIsic = new PoziciaVRozhovore("Nech sa paci");
+        PoziciaVRozhovore nechSaPaciIsic = new PoziciaVRozhovoreSPredmetom("Nech sa paci", new Isic());
         
         dobryDenIsic.pridajMoznost("Ano je!", nechSaPaciIsic);
         dobryDenIsic.pridajMoznost("Nie", dobre);

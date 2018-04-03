@@ -126,6 +126,10 @@ public class Hrac {
             return;
         }
         
-        npc.rozhovor();
+        npc.rozhovor(this);
+    }
+
+    public void pridajPredmet(IPredmet predmet) {
+        this.inventar.put(predmet.getNazov(), predmet);
     }
 }
