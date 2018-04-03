@@ -124,6 +124,27 @@ Dobry den.
 2) Hee?
 > 2
 Fight!
+---------------------------
+...
+Npc: upratovacka
+> hovor upratovacka
+Dobry den, nieje toto vas isic?
+1) Ano je!
+2) Nie.
+> 2
+Dobre
+---------------------------
+...
+Npc: upratovacka
+> hovor upratovacka
+Dobry den, nieje toto vas isic?
+1) Ano je!
+2) Nie.
+> 1
+Nech sa paci (da nam isic)
+1) Vdaka.
+2) ...
+> Dobre
 */
 public class Wof00 {
 
