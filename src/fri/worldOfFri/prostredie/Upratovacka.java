@@ -5,6 +5,9 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author duracik2
@@ -17,7 +20,13 @@ public class Upratovacka extends Npc {
 
     @Override
     public void rozhovor() {
-        super.rozhovor();
+        int aktualnaHodina = Calendar.getInstance().get(Calendar.HOUR);
+        if (aktualnaHodina >= 8 && aktualnaHodina < 10) {
+            super.rozhovor();
+        }
+        else {
+            System.out.println("Momentalne nepracujem");
+        }
     }
     
     

@@ -74,6 +74,8 @@ public class Mapa {
         
         terasa.postavNpc(new Npc("dekan", dobryDen));
         
+        terasa.postavNpc(new Upratovacka(null));
+        
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);
         vratnica.nastavVychod("sever", chodbaA);
