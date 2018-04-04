@@ -34,7 +34,7 @@ public class Mapa {
         
         Miestnost terasa = new Miestnost("Terasa - tu byva FRIfest");
         Miestnost vratnica = new Miestnost("Vratnica - tu byva vratnicka");
-        Miestnost ic = new Miestnost("IC - tu byvaju knihy");
+        Miestnost ic = new MiestnostIC();
         Miestnost chodbaA = new Miestnost("Chodba A - tu byva prvy automat na kavu");
         Miestnost wc = new Miestnost("WC - tu byva smrad");
         Miestnost bufet = new Miestnost("Bufet - tu byva jedlo");
