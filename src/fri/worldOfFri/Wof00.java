@@ -28,7 +28,7 @@ import fri.worldOfFri.hra.Hra;
             > staty
     - kava z automatu
     - navleky
-    - peniaze
+    - peniaze (penazenka)
     - isic
     - bageta
     - ...
@@ -44,6 +44,7 @@ import fri.worldOfFri.hra.Hra;
     - dekan (chce kavu)
     - studijne referentky
     - student nejaky
+    - bufetarka (predava bagetu)
 - talenty (skills)
     - teleport po 3 kavach
     - nerostrhnutie navlekov
@@ -145,6 +146,19 @@ Nech sa paci (da nam isic)
 1) Vdaka.
 2) ...
 > Dobre
+---------------------------
+Npc: bufetarka
+> hovor bufetarka
+Dobry den, co si prosis?
+1) Pizza (10)
+2) Bagetu (5)
+3  Navleky (2)
+4) Nic
+> 1
+Nech sa paci (zaplatim a da nam pizzu)
+1) Vdaka.
+> Dobre
+...
 */
 public class Wof00 {
 
