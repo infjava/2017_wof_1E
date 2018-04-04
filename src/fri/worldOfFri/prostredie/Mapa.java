@@ -8,6 +8,7 @@ package fri.worldOfFri.prostredie;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovore;
 import fri.worldOfFri.prostredie.npc.Upratovacka;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreObchod;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSPredmetom;
 import fri.worldOfFri.prostredie.predmety.Bageta;
 import fri.worldOfFri.prostredie.predmety.Isic;
@@ -91,6 +92,19 @@ public class Mapa {
         nechSaPaciIsic.pridajMoznost("...", fight);
         
         terasa.postavNpc(new Upratovacka(dobryDenIsic));
+        
+        
+        //Rozhovor bufetarka
+        PoziciaVRozhovore bufetarkaMenu = new PoziciaVRozhovore("Dobry den, co si prosis?");
+        PoziciaVRozhovore kupujPizza = new PoziciaVRozhovoreObchod(10, "pizza");
+        PoziciaVRozhovore kupujBageta = new PoziciaVRozhovoreObchod(5, "bageta");
+        PoziciaVRozhovore kupujNavleky = new PoziciaVRozhovoreObchod(2, "navleky");
+        PoziciaVRozhovore nekupujem = new PoziciaVRozhovore("Dovidenia");
+        bufetarkaMenu.pridajMoznost("pizza (10)", kupujPizza);
+        bufetarkaMenu.pridajMoznost("bageta (5)", kupujBageta);
+        bufetarkaMenu.pridajMoznost("navleky (2)", kupujNavleky);
+        bufetarkaMenu.pridajMoznost("nic", nekupujem);
+        
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);

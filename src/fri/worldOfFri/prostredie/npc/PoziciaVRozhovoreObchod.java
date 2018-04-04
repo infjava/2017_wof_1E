@@ -14,9 +14,9 @@ import fri.worldOfFri.prostredie.predmety.IPredmet;
 public class PoziciaVRozhovoreObchod extends PoziciaVRozhovore {
 
     private final int cena;
-    private final IPredmet predmet;
+    private final String predmet;
     
-    public PoziciaVRozhovoreObchod(int cena, IPredmet predmet) {
+    public PoziciaVRozhovoreObchod(int cena, String predmet) {
         super("");
         this.cena = cena;
         this.predmet = predmet;
