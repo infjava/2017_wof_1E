@@ -5,7 +5,12 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.prostredie.predmety.Bageta;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
+import fri.worldOfFri.prostredie.predmety.Isic;
+import fri.worldOfFri.prostredie.predmety.Navleky;
+import fri.worldOfFri.prostredie.predmety.Predmet;
 
 /**
  *
@@ -21,5 +26,22 @@ public class PoziciaVRozhovoreObchod extends PoziciaVRozhovore {
         this.cena = cena;
         this.predmet = predmet;
     }
+
+    @Override
+    void vykonajAkciu(Hrac hrac) {
+        //Zaplat
+        
+        switch (this.predmet) {
+            case "bageta":
+                hrac.pridajPredmet(new Bageta());
+                break;
+            case "navleky":
+                hrac.pridajPredmet(new Navleky());
+                break;
+            default:
+                hrac.pridajPredmet(new Predmet(this.predmet));
+        }
+    }
+    
     
 }
