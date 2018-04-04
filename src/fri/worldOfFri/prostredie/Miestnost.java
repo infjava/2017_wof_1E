@@ -1,6 +1,7 @@
 package fri.worldOfFri.prostredie;
 
 
+import fri.worldOfFri.hra.Hrac;
 import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import java.util.HashMap;
@@ -115,5 +116,9 @@ public class Miestnost {
 
     public Npc getNpc(String menoNpc) {
         return this.npccka.get(menoNpc);
+    }
+
+    public boolean mozemVojst(Hrac hrac) {
+        return true;
     }
 }

@@ -47,7 +47,7 @@ public class Hrac {
         
         Miestnost nova = this.aktualnaMiestnost.getVychod(smer);
         
-        if (nova != null) {
+        if (nova != null && nova.mozemVojst(this)) {
             this.aktualnaMiestnost = nova;
             this.hungerBar--;
             return true;
