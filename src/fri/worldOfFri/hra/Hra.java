@@ -144,8 +144,6 @@ public class Hra  {
 
         if (this.hrac.chodSmerom(smer)) {
             this.hrac.getAktualnaMiestnost().vypisInfo();
-        } else {
-            System.out.println("Tam nie je vychod!");
         }
     }
 

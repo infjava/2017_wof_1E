@@ -42,17 +42,22 @@ public class Hrac {
     
     public boolean chodSmerom(String smer) {
         if (this.hungerBar == 0) {
+            System.out.println("Mas prazdny hungerBar");
             return false;
         }
         
         Miestnost nova = this.aktualnaMiestnost.getVychod(smer);
-        
-        if (nova != null && nova.mozemVojst(this)) {
+        if (nova == null) {
+            System.out.println("Tam nie je vychod!");
+            return false;
+        }
+        else if (!nova.mozemVojst(this)) {
+            System.out.println("Do miestnosti nemozes vojst!");
+            return false;
+        } else {
             this.aktualnaMiestnost = nova;
             this.hungerBar--;
             return true;
-        } else {
-            return false;
         }
     }
 
