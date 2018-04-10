@@ -149,6 +149,12 @@ public class Hrac {
         if (!this.maPredmet("penazenka")) {
             return false;
         }
+        /*IPredmet predmet = this.inventar.get("penazenka");
+        
+        if (predmet instanceof Penazenka) {
+            Penazenka penazenka = (Penazenka) predmet;
+            return penazenka.zaplat(suma);
+        }*/
         Penazenka penazenka = (Penazenka) this.inventar.get("penazenka");
         return penazenka.zaplat(suma);
     }
