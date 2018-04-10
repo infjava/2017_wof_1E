@@ -34,10 +34,16 @@ import fri.worldOfFri.hra.Hra;
     - ...
 - vyhra
 - questy
-    - dones mi kavu
-    - stratil som isic
-    - ziskaj navleky
-    - dostat sa do labaku (pomocou isicu a v navlekoch)
+    - ziskat (rozhovor)
+    - zrusit
+    - splnit
+        - kontrola splnenia
+        - odmena
+    - priklady
+        - dones mi kavu
+        - stratil som isic
+        - ziskaj navleky
+        - dostat sa do labaku (pomocou isicu a v navlekoch)
 - npc
     - vratnicka
     - upratovacka (nasla isic)
