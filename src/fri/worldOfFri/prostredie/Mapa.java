@@ -105,6 +105,8 @@ public class Mapa {
         bufetarkaMenu.pridajMoznost("navleky (2)", kupujNavleky);
         bufetarkaMenu.pridajMoznost("nic", nekupujem);
         
+        terasa.postavNpc(new Npc("bufetarka", bufetarkaMenu));
+        
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);

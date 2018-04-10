@@ -29,17 +29,21 @@ public class PoziciaVRozhovoreObchod extends PoziciaVRozhovore {
 
     @Override
     void vykonajAkciu(Hrac hrac) {
-        //Zaplat
-        
-        switch (this.predmet) {
-            case "bageta":
-                hrac.pridajPredmet(new Bageta());
-                break;
-            case "navleky":
-                hrac.pridajPredmet(new Navleky());
-                break;
-            default:
-                hrac.pridajPredmet(new Predmet(this.predmet));
+        if (hrac.zaplat(this.cena)) {
+            switch (this.predmet) {
+                case "bageta":
+                    hrac.pridajPredmet(new Bageta());
+                    break;
+                case "navleky":
+                    hrac.pridajPredmet(new Navleky());
+                    break;
+                default:
+                    hrac.pridajPredmet(new Predmet(this.predmet));
+            }
+            System.out.println("Nech sa paci "+this.predmet);
+        }
+        else {
+            System.out.println("Nemas dost penazi");
         }
     }
     
