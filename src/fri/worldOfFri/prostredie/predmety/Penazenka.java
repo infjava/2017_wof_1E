@@ -31,5 +31,15 @@ public class Penazenka implements IPredmet {
     public boolean jeZahoditelny() {
         return false;
     }
+
+    public boolean zaplat(int suma) {
+        if (suma <= this.mnozstvoPenazi) {
+            this.mnozstvoPenazi -= suma;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     
 }

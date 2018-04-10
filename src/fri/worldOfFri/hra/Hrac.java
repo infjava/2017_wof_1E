@@ -9,6 +9,7 @@ import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.predmety.Penazenka;
 import java.util.HashMap;
 
 /**
@@ -30,6 +31,8 @@ public class Hrac {
         this.inventar = new HashMap<String, IPredmet>();
         
         this.hungerBar = Hrac.MAX_HUNGER_BAR;
+        
+        this.inventar.put("penazenka", new Penazenka());
     }
 
     public Mapa getMapa() {
@@ -140,5 +143,13 @@ public class Hrac {
 
     public boolean maPredmet(String nazov) {
         return this.inventar.containsKey(nazov);
+    }
+
+    public boolean zaplat(int suma) {
+        if (!this.maPredmet("penazenka")) {
+            return false;
+        }
+        Penazenka penazenka = (Penazenka) this.inventar.get("penazenka");
+        return penazenka.zaplat(suma);
     }
 }
