@@ -32,5 +32,11 @@ public abstract class Quest {
     }
     
     public abstract void skontrolujSplnenie(Hrac hrac);
+
+    protected void oznacAkoSplneny() {
+        if (this.stav == StavQuestu.Aktualny) {
+            this.stav = StavQuestu.Splneny;
+        }
+    }
     
 }

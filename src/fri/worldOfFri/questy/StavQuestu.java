@@ -9,6 +9,6 @@ package fri.worldOfFri.questy;
  *
  * @author duracik2
  */
-enum StavQuestu {
+public enum StavQuestu {
     Splneny, Aktualny, Nesplneny
 }
