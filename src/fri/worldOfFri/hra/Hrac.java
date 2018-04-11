@@ -75,7 +75,7 @@ public class Hrac {
             return false;
         }
         
-        this.inventar.put(predmet.getNazov(), predmet);
+        this.pridajPredmet(predmet);
         return true;
     }
 
@@ -150,6 +150,7 @@ public class Hrac {
 
     public void pridajPredmet(IPredmet predmet) {
         this.inventar.put(predmet.getNazov(), predmet);
+        this.skontrolujQuesty();
     }
 
     public boolean maPredmet(String nazov) {
@@ -178,5 +179,13 @@ public class Hrac {
 
     public boolean maQuest(String nazov) {
         return this.questy.containsKey(nazov);
+    }
+
+    private void skontrolujQuesty() {
+        for (Quest quest : this.questy.values()) {
+            if (quest.jeAktivny()) {
+                quest.skontrolujSplnenie(this);
+            }
+        }
     }
 }

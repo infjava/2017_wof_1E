@@ -24,6 +24,7 @@ public class ZiskajPredmetQuest extends Quest {
     public void skontrolujSplnenie(Hrac hrac) {
         if (hrac.maPredmet(nazovPredmetu)) {
             super.oznacAkoSplneny();
+            System.out.println("Gratulujem, splnil si quest "+this.getNazov());
         }
     }
     
