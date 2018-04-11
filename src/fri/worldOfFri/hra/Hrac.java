@@ -11,6 +11,7 @@ import fri.worldOfFri.prostredie.Miestnost;
 import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.predmety.Penazenka;
 import fri.worldOfFri.questy.Quest;
+import fri.worldOfFri.questy.ZiskajPredmetQuest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -167,5 +168,9 @@ public class Hrac {
         }*/
         Penazenka penazenka = (Penazenka) this.inventar.get("penazenka");
         return penazenka.zaplat(suma);
+    }
+
+    public void pridajQuest(ZiskajPredmetQuest quest) {
+        this.questy.add(quest);
     }
 }
