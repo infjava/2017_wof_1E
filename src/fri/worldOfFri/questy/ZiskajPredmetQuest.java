@@ -11,15 +11,18 @@ import fri.worldOfFri.hra.Hrac;
  *
  * @author duracik2
  */
-public class ZiskajNavlekyQuest extends Quest {
+public class ZiskajPredmetQuest extends Quest {
 
-    public ZiskajNavlekyQuest() {
-        super("Pre splnenie tohto questu musis najst navleky");
+    private String nazovPredmetu;
+    
+    public ZiskajPredmetQuest(String popis, String nazovPredmetu) {
+        super(popis);
+        this.nazovPredmetu = nazovPredmetu;
     }
 
     @Override
     public void skontrolujSplnenie(Hrac hrac) {
-        if (hrac.maPredmet("navleky")) {
+        if (hrac.maPredmet(nazovPredmetu)) {
             super.oznacAkoSplneny();
         }
     }
