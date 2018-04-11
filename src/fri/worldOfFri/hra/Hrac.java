@@ -171,7 +171,7 @@ public class Hrac {
         return penazenka.zaplat(suma);
     }
 
-    public void pridajQuest(ZiskajPredmetQuest quest) {
+    public void pridajQuest(Quest quest) {
         this.questy.put(quest.getNazov(), quest);
         System.out.println("Ziskal si quest:");
         System.out.println(quest.getPopis());

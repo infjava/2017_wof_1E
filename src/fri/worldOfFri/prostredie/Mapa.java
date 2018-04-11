@@ -10,12 +10,15 @@ import fri.worldOfFri.prostredie.npc.Upratovacka;
 import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreObchod;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSPredmetom;
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSQuestom;
 import fri.worldOfFri.prostredie.predmety.Bageta;
 import fri.worldOfFri.prostredie.predmety.Isic;
 import fri.worldOfFri.prostredie.predmety.Navigacia;
 import fri.worldOfFri.prostredie.predmety.Peniaze;
 import fri.worldOfFri.prostredie.predmety.Navleky;
 import fri.worldOfFri.prostredie.predmety.PredmetMapa;
+import fri.worldOfFri.questy.Quest;
+import fri.worldOfFri.questy.ZiskajPredmetQuest;
 import java.util.ArrayList;
 
 /**
@@ -68,11 +71,13 @@ public class Mapa {
         PoziciaVRozhovore bageta = new PoziciaVRozhovore("Bageta");
         PoziciaVRozhovore fight = new PoziciaVRozhovore("Fight!");
         PoziciaVRozhovore ineDobre = new PoziciaVRozhovore("Dobre");
+        Quest zozenKavu = new  ZiskajPredmetQuest("dones-kavu", "Prines kavu p. dekanovi", "kava");
+        PoziciaVRozhovore dobreDonesKavu = new PoziciaVRozhovoreSQuestom("Dakujem.", zozenKavu);
         
         dobryDen.pridajMoznost("Dobry!", chcemKavu);
         dobryDen.pridajMoznost("Hee?", fight);
         
-        chcemKavu.pridajMoznost("Okej, zozeniem vam", dobre);
+        chcemKavu.pridajMoznost("Okej, zozeniem vam", dobreDonesKavu);
         chcemKavu.pridajMoznost("Co za to?", bageta);
         chcemKavu.pridajMoznost("Aj ja", fight);
         
