@@ -20,12 +20,13 @@ public class MiestnostIC extends Miestnost {
 
     @Override
     public boolean mozemVojst(Hrac hrac) {
-        if (!hrac.maPredmet("isic")) {
-            hrac.pridajQuest(new ZiskajPredmetQuest("Musis najst kde si stratil isic", "isic"));
+        if (!hrac.maPredmet("isic") && !hrac.maQuest("najdi-isic")) {
+            hrac.pridajQuest(new ZiskajPredmetQuest("najdi-isic", "Musis najst kde si stratil isic", "isic"));
         }
-        if (!hrac.maPredmet("navleky")) {
-            hrac.pridajQuest(new ZiskajPredmetQuest("Chod si kupit navleky", "navleky"));
+        if (!hrac.maPredmet("navleky") && !hrac.maQuest("kup-navleky")) {
+            hrac.pridajQuest(new ZiskajPredmetQuest("kup-navleky", "Chod si kupit navleky", "navleky"));
         }
+        
         return hrac.maPredmet("isic") && hrac.maPredmet("navleky");
     }
     

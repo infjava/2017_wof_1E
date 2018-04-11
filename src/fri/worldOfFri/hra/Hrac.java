@@ -24,7 +24,7 @@ public class Hrac {
     
     private Miestnost aktualnaMiestnost;
     private HashMap<String, IPredmet> inventar;
-    private ArrayList<Quest> questy;
+    private HashMap<String, Quest> questy;
     private int hungerBar;
     private final Mapa mapa;
 
@@ -33,7 +33,7 @@ public class Hrac {
         
         this.aktualnaMiestnost = this.mapa.getStartovaciaMiestnost();
         this.inventar = new HashMap<String, IPredmet>();
-        this.questy = new ArrayList<Quest>();
+        this.questy = new HashMap<String, Quest>();
         this.hungerBar = Hrac.MAX_HUNGER_BAR;
         
         this.inventar.put("penazenka", new Penazenka());
@@ -93,7 +93,7 @@ public class Hrac {
         }
         
         System.out.println("Questy:");
-        for (Quest quest : this.questy) {
+        for (Quest quest : this.questy.values()) {
             if (quest.jeAktivny()) {
                 System.out.println(quest.getPopis());
             }
@@ -171,6 +171,12 @@ public class Hrac {
     }
 
     public void pridajQuest(ZiskajPredmetQuest quest) {
-        this.questy.add(quest);
+        this.questy.put(quest.getNazov(), quest);
+        System.out.println("Ziskal si quest:");
+        System.out.println(quest.getPopis());
+    }
+
+    public boolean maQuest(String nazov) {
+        return this.questy.containsKey(nazov);
     }
 }

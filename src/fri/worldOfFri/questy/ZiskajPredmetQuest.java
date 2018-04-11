@@ -15,8 +15,8 @@ public class ZiskajPredmetQuest extends Quest {
 
     private String nazovPredmetu;
     
-    public ZiskajPredmetQuest(String popis, String nazovPredmetu) {
-        super(popis);
+    public ZiskajPredmetQuest(String nazov, String popis, String nazovPredmetu) {
+        super(nazov, popis);
         this.nazovPredmetu = nazovPredmetu;
     }
 

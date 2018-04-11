@@ -12,11 +12,13 @@ import fri.worldOfFri.hra.Hrac;
  * @author duracik2
  */
 public abstract class Quest {
-    
+
+    private final String nazov;
     private String popis;
     private StavQuestu stav;
 
-    public Quest(String popis) {
+    public Quest(String nazov, String popis) {
+        this.nazov = nazov;
         this.popis = popis;
         this.stav = StavQuestu.Aktualny;
     }
@@ -41,6 +43,10 @@ public abstract class Quest {
 
     public String getPopis() {
         return this.popis;
+    }
+
+    public String getNazov() {
+        return this.nazov;
     }
 
     public boolean jeAktivny() {
