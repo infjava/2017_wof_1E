@@ -10,6 +10,8 @@ import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
 import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.predmety.Penazenka;
+import fri.worldOfFri.questy.Quest;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -21,6 +23,7 @@ public class Hrac {
     
     private Miestnost aktualnaMiestnost;
     private HashMap<String, IPredmet> inventar;
+    private ArrayList<Quest> questy;
     private int hungerBar;
     private final Mapa mapa;
 
@@ -29,7 +32,7 @@ public class Hrac {
         
         this.aktualnaMiestnost = this.mapa.getStartovaciaMiestnost();
         this.inventar = new HashMap<String, IPredmet>();
-        
+        this.questy = new ArrayList<Quest>();
         this.hungerBar = Hrac.MAX_HUNGER_BAR;
         
         this.inventar.put("penazenka", new Penazenka());
@@ -86,6 +89,13 @@ public class Hrac {
             }
         } else {
             System.out.println("Mas prazdny inventar");
+        }
+        
+        System.out.println("Questy:");
+        for (Quest quest : this.questy) {
+            if (quest.jeAktivny()) {
+                System.out.println(quest.getPopis());
+            }
         }
     }
 

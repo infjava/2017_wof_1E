@@ -38,5 +38,13 @@ public abstract class Quest {
             this.stav = StavQuestu.Splneny;
         }
     }
+
+    public String getPopis() {
+        return this.popis;
+    }
+
+    public boolean jeAktivny() {
+        return this.stav == StavQuestu.Aktualny;
+    }
     
 }
