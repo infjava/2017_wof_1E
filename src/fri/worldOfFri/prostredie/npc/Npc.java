@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
 import java.util.Scanner;
 
 /**
@@ -16,21 +17,22 @@ public class Npc {
     private final String meno;
     private final PoziciaVRozhovore zaciatocnaPozicia;
 
-    Npc(String meno, PoziciaVRozhovore zaciatocnaPozicia) {
+    public Npc(String meno, PoziciaVRozhovore zaciatocnaPozicia) {
         this.meno = meno;
         this.zaciatocnaPozicia = zaciatocnaPozicia;
     }
 
-    String getMeno() {
+    public String getMeno() {
         return this.meno;
     }
     
-    public void rozhovor() {
+    public void rozhovor(Hrac hrac) {
         Scanner vstup = new Scanner(System.in);
         
         PoziciaVRozhovore aktualna = this.zaciatocnaPozicia;
         
         for (;;) {
+            aktualna.vykonajAkciu(hrac);
             System.out.println(aktualna.getReplikaNpc());
             
             if (aktualna.jeKoniec()) {

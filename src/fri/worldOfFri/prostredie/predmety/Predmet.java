@@ -14,7 +14,7 @@ import fri.worldOfFri.hra.Hrac;
 public class Predmet implements IPredmet {
     private final String nazov;
 
-    Predmet(String nazov) {
+    public Predmet(String nazov) {
         this.nazov = nazov;
     }
 

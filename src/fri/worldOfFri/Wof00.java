@@ -28,22 +28,29 @@ import fri.worldOfFri.hra.Hra;
             > staty
     - kava z automatu
     - navleky
-    - peniaze
+    - peniaze (penazenka)
     - isic
     - bageta
     - ...
 - vyhra
 - questy
-    - dones mi kavu
-    - stratil som isic
-    - ziskaj navleky
-    - dostat sa do labaku (pomocou isicu a v navlekoch)
+    - ziskat (rozhovor)
+    - zrusit
+    - splnit
+        - kontrola splnenia
+        - odmena
+    - priklady
+        - dones mi kavu
+        - stratil som isic
+        - ziskaj navleky
+        - dostat sa do labaku (pomocou isicu a v navlekoch)
 - npc
     - vratnicka
     - upratovacka (nasla isic)
     - dekan (chce kavu)
     - studijne referentky
     - student nejaky
+    - bufetarka (predava bagetu)
 - talenty (skills)
     - teleport po 3 kavach
     - nerostrhnutie navlekov
@@ -124,6 +131,40 @@ Dobry den.
 2) Hee?
 > 2
 Fight!
+---------------------------
+...
+Npc: upratovacka
+> hovor upratovacka
+Dobry den, nieje toto vas isic?
+1) Ano je!
+2) Nie.
+> 2
+Dobre
+---------------------------
+...
+Npc: upratovacka
+> hovor upratovacka
+Dobry den, nieje toto vas isic?
+1) Ano je!
+2) Nie.
+> 1
+Nech sa paci (da nam isic)
+1) Vdaka.
+2) ...
+> Dobre
+---------------------------
+Npc: bufetarka
+> hovor bufetarka
+Dobry den, co si prosis?
+1) Pizza (10)
+2) Bagetu (5)
+3  Navleky (2)
+4) Nic
+> 1
+Nech sa paci (zaplatim a da nam pizzu)
+1) Vdaka.
+> Dobre
+...
 */
 public class Wof00 {
 

@@ -8,7 +8,11 @@ package fri.worldOfFri.hra;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
-import fri.worldOfFri.prostredie.Npc;
+import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.predmety.Penazenka;
+import fri.worldOfFri.questy.Quest;
+import fri.worldOfFri.questy.ZiskajPredmetQuest;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -20,6 +24,7 @@ public class Hrac {
     
     private Miestnost aktualnaMiestnost;
     private HashMap<String, IPredmet> inventar;
+    private HashMap<String, Quest> questy;
     private int hungerBar;
     private final Mapa mapa;
 
@@ -28,8 +33,10 @@ public class Hrac {
         
         this.aktualnaMiestnost = this.mapa.getStartovaciaMiestnost();
         this.inventar = new HashMap<String, IPredmet>();
-        
+        this.questy = new HashMap<String, Quest>();
         this.hungerBar = Hrac.MAX_HUNGER_BAR;
+        
+        this.inventar.put("penazenka", new Penazenka());
     }
 
     public Mapa getMapa() {
@@ -42,17 +49,22 @@ public class Hrac {
     
     public boolean chodSmerom(String smer) {
         if (this.hungerBar == 0) {
+            System.out.println("Mas prazdny hungerBar");
             return false;
         }
         
         Miestnost nova = this.aktualnaMiestnost.getVychod(smer);
-        
-        if (nova != null) {
+        if (nova == null) {
+            System.out.println("Tam nie je vychod!");
+            return false;
+        }
+        else if (!nova.mozemVojst(this)) {
+            System.out.println("Do miestnosti nemozes vojst!");
+            return false;
+        } else {
             this.aktualnaMiestnost = nova;
             this.hungerBar--;
             return true;
-        } else {
-            return false;
         }
     }
 
@@ -63,7 +75,7 @@ public class Hrac {
             return false;
         }
         
-        this.inventar.put(predmet.getNazov(), predmet);
+        this.pridajPredmet(predmet);
         return true;
     }
 
@@ -78,6 +90,13 @@ public class Hrac {
             }
         } else {
             System.out.println("Mas prazdny inventar");
+        }
+        
+        System.out.println("Questy:");
+        for (Quest quest : this.questy.values()) {
+            if (quest.jeAktivny()) {
+                System.out.println(quest.getPopis());
+            }
         }
     }
 
@@ -126,6 +145,47 @@ public class Hrac {
             return;
         }
         
-        npc.rozhovor();
+        npc.rozhovor(this);
+    }
+
+    public void pridajPredmet(IPredmet predmet) {
+        this.inventar.put(predmet.getNazov(), predmet);
+        this.skontrolujQuesty();
+    }
+
+    public boolean maPredmet(String nazov) {
+        return this.inventar.containsKey(nazov);
+    }
+
+    public boolean zaplat(int suma) {
+        if (!this.maPredmet("penazenka")) {
+            return false;
+        }
+        /*IPredmet predmet = this.inventar.get("penazenka");
+        
+        if (predmet instanceof Penazenka) {
+            Penazenka penazenka = (Penazenka) predmet;
+            return penazenka.zaplat(suma);
+        }*/
+        Penazenka penazenka = (Penazenka) this.inventar.get("penazenka");
+        return penazenka.zaplat(suma);
+    }
+
+    public void pridajQuest(Quest quest) {
+        this.questy.put(quest.getNazov(), quest);
+        System.out.println("Ziskal si quest:");
+        System.out.println(quest.getPopis());
+    }
+
+    public boolean maQuest(String nazov) {
+        return this.questy.containsKey(nazov);
+    }
+
+    private void skontrolujQuesty() {
+        for (Quest quest : this.questy.values()) {
+            if (quest.jeAktivny()) {
+                quest.skontrolujSplnenie(this);
+            }
+        }
     }
 }

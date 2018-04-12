@@ -5,11 +5,20 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovore;
+import fri.worldOfFri.prostredie.npc.Upratovacka;
+import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreObchod;
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSPredmetom;
+import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSQuestom;
 import fri.worldOfFri.prostredie.predmety.Bageta;
+import fri.worldOfFri.prostredie.predmety.Isic;
 import fri.worldOfFri.prostredie.predmety.Navigacia;
 import fri.worldOfFri.prostredie.predmety.Peniaze;
 import fri.worldOfFri.prostredie.predmety.Navleky;
 import fri.worldOfFri.prostredie.predmety.PredmetMapa;
+import fri.worldOfFri.questy.Quest;
+import fri.worldOfFri.questy.ZiskajPredmetQuest;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +38,7 @@ public class Mapa {
         
         Miestnost terasa = new Miestnost("Terasa - tu byva FRIfest");
         Miestnost vratnica = new Miestnost("Vratnica - tu byva vratnicka");
-        Miestnost ic = new Miestnost("IC - tu byvaju knihy");
+        Miestnost ic = new MiestnostIC();
         Miestnost chodbaA = new Miestnost("Chodba A - tu byva prvy automat na kavu");
         Miestnost wc = new Miestnost("WC - tu byva smrad");
         Miestnost bufet = new Miestnost("Bufet - tu byva jedlo");
@@ -55,17 +64,20 @@ public class Mapa {
         terasa.polozPredmet(new PredmetMapa());
         terasa.polozPredmet(new Navigacia());
         
+        //Rozhovor dekan
         PoziciaVRozhovore dobryDen = new PoziciaVRozhovore("Dobry den.");
         PoziciaVRozhovore chcemKavu = new PoziciaVRozhovore("Chcem kavu.");
         PoziciaVRozhovore dobre = new PoziciaVRozhovore("Dobre");
         PoziciaVRozhovore bageta = new PoziciaVRozhovore("Bageta");
         PoziciaVRozhovore fight = new PoziciaVRozhovore("Fight!");
         PoziciaVRozhovore ineDobre = new PoziciaVRozhovore("Dobre");
+        Quest zozenKavu = new  ZiskajPredmetQuest("dones-kavu", "Prines kavu p. dekanovi", "kava");
+        PoziciaVRozhovore dobreDonesKavu = new PoziciaVRozhovoreSQuestom("Dakujem.", zozenKavu);
         
         dobryDen.pridajMoznost("Dobry!", chcemKavu);
         dobryDen.pridajMoznost("Hee?", fight);
         
-        chcemKavu.pridajMoznost("Okej, zozeniem vam", dobre);
+        chcemKavu.pridajMoznost("Okej, zozeniem vam", dobreDonesKavu);
         chcemKavu.pridajMoznost("Co za to?", bageta);
         chcemKavu.pridajMoznost("Aj ja", fight);
         
@@ -73,6 +85,33 @@ public class Mapa {
         bageta.pridajMoznost("Nechcem", ineDobre);
         
         terasa.postavNpc(new Npc("dekan", dobryDen));
+        
+        //Rozhovor upratovacka
+        PoziciaVRozhovore dobryDenIsic = new PoziciaVRozhovore("Dobry den, nieje toto vas isic?");
+        PoziciaVRozhovore nechSaPaciIsic = new PoziciaVRozhovoreSPredmetom("Nech sa paci", new Isic());
+        
+        dobryDenIsic.pridajMoznost("Ano je!", nechSaPaciIsic);
+        dobryDenIsic.pridajMoznost("Nie", dobre);
+        
+        nechSaPaciIsic.pridajMoznost("Vdaka", dobre);
+        nechSaPaciIsic.pridajMoznost("...", fight);
+        
+        terasa.postavNpc(new Upratovacka(dobryDenIsic));
+        
+        
+        //Rozhovor bufetarka
+        PoziciaVRozhovore bufetarkaMenu = new PoziciaVRozhovore("Dobry den, co si prosis?");
+        PoziciaVRozhovore kupujPizza = new PoziciaVRozhovoreObchod(10, "pizza");
+        PoziciaVRozhovore kupujBageta = new PoziciaVRozhovoreObchod(5, "bageta");
+        PoziciaVRozhovore kupujNavleky = new PoziciaVRozhovoreObchod(2, "navleky");
+        PoziciaVRozhovore nekupujem = new PoziciaVRozhovore("Dovidenia");
+        bufetarkaMenu.pridajMoznost("pizza (10)", kupujPizza);
+        bufetarkaMenu.pridajMoznost("bageta (5)", kupujBageta);
+        bufetarkaMenu.pridajMoznost("navleky (2)", kupujNavleky);
+        bufetarkaMenu.pridajMoznost("nic", nekupujem);
+        
+        terasa.postavNpc(new Npc("bufetarka", bufetarkaMenu));
+        
         
         vratnica.nastavVychod("vychod", ic);
         vratnica.nastavVychod("zapad", terasa);

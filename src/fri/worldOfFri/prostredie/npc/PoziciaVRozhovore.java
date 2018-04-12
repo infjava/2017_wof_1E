@@ -3,33 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.prostredie.npc.MoznostVRozhovore;
 import java.util.ArrayList;
 
 /**
  *
  * @author janik
  */
-class PoziciaVRozhovore {
+public class PoziciaVRozhovore {
 
     private final String replikaNpc;
     private final ArrayList<MoznostVRozhovore> replikyHraca;
 
-    PoziciaVRozhovore(String replikaNpc) {
+    public PoziciaVRozhovore(String replikaNpc) {
         this.replikaNpc = replikaNpc;
         this.replikyHraca = new ArrayList<MoznostVRozhovore>();
     }
 
-    void pridajMoznost(String replikaHraca, PoziciaVRozhovore dalsiaPozicia) {
+    public void pridajMoznost(String replikaHraca, PoziciaVRozhovore dalsiaPozicia) {
         this.replikyHraca.add(new MoznostVRozhovore(replikaHraca, dalsiaPozicia));
     }
 
-    String getReplikaNpc() {
+    public String getReplikaNpc() {
         return this.replikaNpc;
     }
 
-    void vypisMoznosti() {
+    public void vypisMoznosti() {
         int pocitadloReplik = 1;
         for (MoznostVRozhovore replika : this.replikyHraca) {
             System.out.format("%d) %s%n", pocitadloReplik, replika.getReplikaHraca());
@@ -37,7 +39,7 @@ class PoziciaVRozhovore {
         }
     }
 
-    PoziciaVRozhovore getDalsiaPozicia(int moznost) {
+    public PoziciaVRozhovore getDalsiaPozicia(int moznost) {
         return this.replikyHraca.get(moznost - 1).getDalsiaPozicia();
     }
     
@@ -45,7 +47,10 @@ class PoziciaVRozhovore {
         return this.replikyHraca.isEmpty();
     }
 
-    int getPocetMoznosti() {
+    public int getPocetMoznosti() {
         return this.replikyHraca.size();
+    }
+
+    void vykonajAkciu(Hrac hrac) {
     }
 }
