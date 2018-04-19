@@ -1,0 +1,83 @@
+miestnost terasa
+    tu byva FRIfest
+
+    vychod => vratnica
+    predmet navleky
+    predmet bageta
+    predmet peniaze
+    predmet mapa
+    predmet navigacia
+    npc dekan
+
+miestnost vratnica
+    tu byva vratnicka
+
+    vychod => ic
+    zapad => terasa
+    sever => chodbaA
+    juh => chodbaB
+
+miestnost ic (MiestnostIC)
+    tu byvaju knihy
+
+    zapad => vratnica
+
+miestnost chodbaA
+    tu byva prvy automat na kavu
+    skus vhodit peniaze
+
+    vychod => wc
+    zapad => bufet
+    juh => vratnica
+
+miestnost wc
+    tu byva smrad
+
+    zapad => chodbaA
+
+miestnost bufet
+    tu byva jedlo
+
+    vychod => chodbaA
+
+miestnost chodbaB
+    tu byva druhy automat na kavu
+    skus vhodit peniaze
+
+    zapad => b1
+    sever => vratnica
+    juh => chillZone
+
+miestnost chillZone
+    tu byva vela studentov
+
+    sever => chodbaB
+
+miestnost b1
+    tu byva ticho
+
+    vychod => chodbaB
+        
+npc dekan
+    dobryDen
+        Dobry den
+
+        * Dobry! => chcemKavu
+        * Hee? => fight
+    chcemKavu
+        Chcem kavu.
+
+        * Okej, zozeniem vam => dobre
+        * Co za to? => bageta
+        * Aj ja => fight
+
+    dobre
+        Dobre
+
+        * Okej, zozeniem vam => dobre
+        * Nechcem => dobre
+    
+    fight
+        Fight!
+
+start terasa
