@@ -6,6 +6,7 @@
 package fri.worldOfFri.prostredie.npc;
 
 import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.prikazy.Parser;
 import java.util.Scanner;
 
 /**
@@ -43,14 +44,9 @@ public class Npc {
             
             int moznost;
             final int pocetMoznosti = aktualna.getPocetMoznosti();
+            final String otazka = String.format("(1-%d)>", pocetMoznosti);
             do {                
-                Scanner riadok;
-                do {                    
-                    System.out.format("(1-%d)> ", pocetMoznosti);
-                    riadok = new Scanner(vstup.nextLine());
-                } while (!riadok.hasNextInt());
-                
-                moznost = riadok.nextInt();
+                moznost = Parser.getInstancia().nacitajInt(otazka);
             } while (moznost > pocetMoznosti || moznost < 1);
             
             aktualna = aktualna.getDalsiaPozicia(moznost);

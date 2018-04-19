@@ -1,5 +1,7 @@
 package fri.worldOfFri.prikazy;
 
+import java.util.ArrayList;
+
 /**
  * Trieda prikaz implemntuje casti prikazu, ktore moze hrac zadat.
  * V tejto verzii prikaz tvoria dve slova: nazov prikazu a druhe slovo.
@@ -20,6 +22,7 @@ package fri.worldOfFri.prikazy;
 public class Prikaz {
     private String nazovPrikazu;
     private String parameter;
+    private ArrayList<String> dalsieAkcie;
 
     /**
      * Inicializuje slova prikazu dvomi zadanymi parametrami. Jeden alebo oba
@@ -32,6 +35,7 @@ public class Prikaz {
     public Prikaz(String nazovPrikazu, String parameter) {
         this.nazovPrikazu = nazovPrikazu;
         this.parameter = parameter;
+        this.dalsieAkcie = new ArrayList<String>();
     }
 
     /**
@@ -60,5 +64,13 @@ public class Prikaz {
      */
     public boolean maParameter() {
         return this.parameter != null;
+    }
+    
+    public void pridajAkciu(String akcia) {
+        this.dalsieAkcie.add(akcia);
+    }
+    
+    public Iterable<String> getAkcie() {
+        return this.dalsieAkcie;
     }
 }

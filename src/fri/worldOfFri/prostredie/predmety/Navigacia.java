@@ -6,6 +6,7 @@
 package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.prikazy.Parser;
 import fri.worldOfFri.prostredie.Miestnost;
 import java.util.Scanner;
 
@@ -19,9 +20,7 @@ public class Navigacia implements IPredmet {
 
     @Override
     public void pouziSa(Hrac hrac) {
-        System.out.print("Zadaj cielovu miestnost: ");
-        Scanner s = new Scanner(System.in);
-        String nazovCielu = s.nextLine();
+        String nazovCielu = Parser.getInstancia().nacitajString("Zadaj cielovu miestnost:");
         Miestnost ciel = hrac.getMapa().getMiestnost(nazovCielu);
         
         if (ciel == null) {

@@ -24,14 +24,12 @@ import fri.worldOfFri.prikazy.Parser;
 */
  
 public class Hra  {
-    private Parser parser;
     private Hrac hrac;
     
     /**
      * Vytvori a inicializuje hru.
      */
     public Hra() {
-        this.parser = new Parser();
         this.hrac = new Hrac();
     }
 
@@ -50,7 +48,7 @@ public class Hra  {
         boolean jeKoniec;
         
         do {
-            Prikaz prikaz = this.parser.nacitajPrikaz();
+            Prikaz prikaz = Parser.getInstancia().nacitajPrikaz();
             jeKoniec = this.vykonajPrikaz(prikaz);
         } while (!jeKoniec);
         

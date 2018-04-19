@@ -1,5 +1,6 @@
 package fri.worldOfFri.prikazy;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,15 +15,25 @@ import java.util.Scanner;
  * @version 2012.02.21
  */
 public class Parser {
+    private static Parser instancia = new Parser();
+    
     private NazvyPrikazov prikazy;  // odkaz na pripustne nazvy prikazov
     private Scanner citac;         // zdroj vstupov od hraca
+    private ArrayList<Prikaz> historia;
+    private Prikaz poslednyVykonavany;
+    
+    public static Parser getInstancia() {
+        return Parser.instancia;
+    }
 
     /**
      * Vytvori citac na citanie vstupov z terminaloveho okna.
      */
-    public Parser() {
+    private Parser() {
         this.prikazy = new NazvyPrikazov();
         this.citac = new Scanner(System.in);
+        this.historia = new ArrayList<Prikaz>();
+        this.poslednyVykonavany = null;
     }
 
     /**
@@ -45,14 +56,38 @@ public class Parser {
                 // vsimnite si, ze zbytok textu sa ignoruje
             }
         }
-
+        
         // kontrola platnosti prikazu
         if (this.prikazy.jePrikaz(prikaz)) {
             // vytvori platny prikaz
-            return new Prikaz(prikaz, parameter);
+            Prikaz ret = new Prikaz(prikaz, parameter);
+            this.historia.add(ret);
+            this.poslednyVykonavany = ret;
+            return ret;
         } else {
             // vytvori neplatny - "neznamy" prikaz
             return new Prikaz(null, parameter); 
         }
+    }
+    
+    public int nacitajInt(String otazka) {
+        Scanner riadok;
+        do {                    
+            System.out.print(otazka);
+            System.out.print(" ");
+            riadok = new Scanner(this.citac.nextLine());
+        } while (!riadok.hasNextInt());
+
+        int cislo = riadok.nextInt();
+        this.poslednyVykonavany.pridajAkciu(Integer.toString(cislo));
+        return cislo;
+    }
+    
+    public String nacitajString(String otazka) {
+        System.out.print(otazka);
+        System.out.print(" ");
+        String riadok = this.citac.nextLine();
+        this.poslednyVykonavany.pridajAkciu(riadok);
+        return riadok;
     }
 }
