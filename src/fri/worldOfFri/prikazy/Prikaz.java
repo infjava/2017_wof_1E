@@ -73,4 +73,8 @@ public class Prikaz {
     public Iterable<String> getAkcie() {
         return this.dalsieAkcie;
     }
+    
+    public String nacitajAkciuZMakra() {
+        return this.dalsieAkcie.remove(0);
+    }
 }

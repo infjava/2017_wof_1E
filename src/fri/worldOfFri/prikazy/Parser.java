@@ -24,6 +24,8 @@ public class Parser {
     private Scanner citac;         // zdroj vstupov od hraca
     private ArrayList<Prikaz> historia;
     private Prikaz poslednyVykonavany;
+    private ArrayList<Prikaz> aktualneMakro;
+    private Prikaz poslednyVMakre;
     
     public static Parser getInstancia() {
         return Parser.instancia;
@@ -37,12 +39,20 @@ public class Parser {
         this.citac = new Scanner(System.in);
         this.historia = new ArrayList<Prikaz>();
         this.poslednyVykonavany = null;
+        this.aktualneMakro = new ArrayList<Prikaz>();
+        this.poslednyVMakre = null;
     }
 
     /**
      * @return prikaz zadany hracom
      */
     public Prikaz nacitajPrikaz() {
+        if (!this.aktualneMakro.isEmpty()) {
+            return this.nacitajPrikazZMakra();
+        }
+        
+        this.poslednyVMakre = null;
+        
         System.out.print("> ");     // vyzva pre hraca na zadanie prikazu
 
         String vstupnyRiadok = this.citac.nextLine();
@@ -72,8 +82,18 @@ public class Parser {
             return new Prikaz(null, parameter); 
         }
     }
+
+    private Prikaz nacitajPrikazZMakra() {
+        this.poslednyVMakre = this.aktualneMakro.remove(0);
+        System.out.format("> %s %s%n", this.poslednyVMakre.getNazov(), this.poslednyVMakre.getParameter());
+        return this.poslednyVMakre;
+    }
     
     public int nacitajInt(String otazka) {
+        if (this.poslednyVMakre != null) {
+            return this.nacitajIntZMakra(otazka);
+        }
+        
         Scanner riadok;
         do {                    
             System.out.print(otazka);
@@ -85,13 +105,33 @@ public class Parser {
         this.poslednyVykonavany.pridajAkciu(Integer.toString(cislo));
         return cislo;
     }
+
+    private int nacitajIntZMakra(String otazka) {
+        int ret = Integer.parseInt(this.poslednyVMakre.nacitajAkciuZMakra());
+        System.out.print(otazka);
+        System.out.print(" ");
+        System.out.println(ret);
+        return ret;
+    }
     
     public String nacitajString(String otazka) {
+        if (this.poslednyVMakre != null) {
+            return this.nacitajStringZMakra(otazka);
+        }
+        
         System.out.print(otazka);
         System.out.print(" ");
         String riadok = this.citac.nextLine();
         this.poslednyVykonavany.pridajAkciu(riadok);
         return riadok;
+    }
+
+    private String nacitajStringZMakra(String otazka) {
+        String ret = this.poslednyVMakre.nacitajAkciuZMakra();
+        System.out.print(otazka);
+        System.out.print(" ");
+        System.out.println(ret);
+        return ret;
     }
 
     public void ulozMakro(String nazovMakra, int pocetPrikazov) throws IOException {
@@ -111,6 +151,34 @@ public class Parser {
                 }
                 for (String akcia : zapisovany.getAkcie()) {
                     makro.println(akcia);
+                }
+            }
+        }
+    }
+
+    public void zopakujMakro(String nazovMakra) throws IOException {
+        this.aktualneMakro.clear();
+        
+        Prikaz poslednyVAktualnomMakre = null;
+        
+        File suborSMakrom = new File(nazovMakra + ".mac");
+        try (Scanner makro = new Scanner(suborSMakrom)) {
+            while (makro.hasNextLine()) {
+                String riadok = makro.nextLine();
+                if (riadok.startsWith("> ")) {
+                    Scanner citacRiadku = new Scanner(riadok);
+                    citacRiadku.next(); // preskoci "> "
+                    String nazovPrikazu = citacRiadku.next();
+                    String parameterPrikazu;
+                    if (citacRiadku.hasNext()) {
+                        parameterPrikazu = citacRiadku.next();
+                    } else {
+                        parameterPrikazu = null;
+                    }
+                    poslednyVAktualnomMakre = new Prikaz(nazovPrikazu, parameterPrikazu);
+                    this.aktualneMakro.add(poslednyVAktualnomMakre);
+                } else if (poslednyVAktualnomMakre != null) {
+                    poslednyVAktualnomMakre.pridajAkciu(riadok);
                 }
             }
         }
