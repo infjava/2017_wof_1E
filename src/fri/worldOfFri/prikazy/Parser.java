@@ -1,5 +1,8 @@
 package fri.worldOfFri.prikazy;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -89,5 +92,27 @@ public class Parser {
         String riadok = this.citac.nextLine();
         this.poslednyVykonavany.pridajAkciu(riadok);
         return riadok;
+    }
+
+    public void ulozMakro(String nazovMakra, int pocetPrikazov) throws IOException {
+        File suborSMakrom = new File(nazovMakra + ".mac");
+        try (PrintWriter makro = new PrintWriter(suborSMakrom)) {
+            int posledneCisloPrikazu = this.historia.size() - 1;
+            int cisloPrikazu = posledneCisloPrikazu - pocetPrikazov;
+            if (cisloPrikazu < 0) {
+                cisloPrikazu = 0;
+            }
+            for (int i = cisloPrikazu; i < posledneCisloPrikazu; i++) {
+                Prikaz zapisovany = this.historia.get(i);
+                if (zapisovany.maParameter()) {
+                    makro.format("> %s %s%n", zapisovany.getNazov(), zapisovany.getParameter());
+                } else {
+                    makro.format("> %s%n", zapisovany.getNazov());
+                }
+                for (String akcia : zapisovany.getAkcie()) {
+                    makro.println(akcia);
+                }
+            }
+        }
     }
 }

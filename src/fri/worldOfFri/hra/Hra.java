@@ -2,6 +2,7 @@ package fri.worldOfFri.hra;
 
 import fri.worldOfFri.prikazy.Prikaz;
 import fri.worldOfFri.prikazy.Parser;
+import java.io.IOException;
 
 /**
  * Trieda Hra je hlavna trieda aplikacie "World of FRI".
@@ -108,6 +109,9 @@ public class Hra  {
             case "hovor":
                 this.hovorSNpc(prikaz);
                 return false;
+            case "nahraj":
+                this.nahrajMakro(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -191,5 +195,15 @@ public class Hra  {
     private void hovorSNpc(Prikaz prikaz) {
         String menoNpc = prikaz.getParameter();
         this.hrac.hovorSNpc(menoNpc);
+    }
+
+    private void nahrajMakro(Prikaz prikaz) {
+        String nazovMakra = prikaz.getParameter();
+        int pocetPrikazov = Parser.getInstancia().nacitajInt("Zadaj pocet prikazov:");
+        try {
+            Parser.getInstancia().ulozMakro(nazovMakra, pocetPrikazov);
+        } catch (IOException ex) {
+            System.out.println("Chyba zapisu");
+        }
     }
 }
