@@ -56,10 +56,16 @@ public class Mapa {
                 Scanner citacRiadkuSDefiniciou = new Scanner(riadokSDefiniciou);
                 String prikaz = citacRiadkuSDefiniciou.next();
                 String parameter = citacRiadkuSDefiniciou.next();
+                String druhyParameter;
+                if (citacRiadkuSDefiniciou.hasNext()) {
+                    druhyParameter = citacRiadkuSDefiniciou.next();
+                } else {
+                    druhyParameter = null;
+                }
                 
                 switch (prikaz) {
                     case "miestnost":
-                        this.citajMiestnost(parameter, citacMapy);
+                        this.citajMiestnost(parameter, druhyParameter, citacMapy);
                         break;
                     case "npc":
                         this.citajNpc(parameter, citacMapy);
@@ -186,7 +192,7 @@ public class Mapa {
         */
     }
 
-    private void citajMiestnost(String nazovMiestnosti, Scanner citacMapy) {
+    private void citajMiestnost(String nazovMiestnosti, String triedaMiestnosti, Scanner citacMapy) {
         StringBuilder popis = new StringBuilder();
         String riadokPopisu;
         do {
@@ -196,8 +202,18 @@ public class Mapa {
             popis.append('\n');
         } while (!riadokPopisu.equals(""));
         
-        Miestnost miestnost = new Miestnost(nazovMiestnosti + " - "
-                + popis.toString().trim());
+        Miestnost miestnost;
+        if (triedaMiestnosti == null) {
+            miestnost = new Miestnost(nazovMiestnosti + " - " + popis.toString().trim());
+        } else {
+            switch (triedaMiestnosti) {
+                case "(MiestnostIC)":
+                    miestnost = new MiestnostIC(nazovMiestnosti + " - " + popis.toString().trim());
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
         
         String riadokPrikazu;
         do {

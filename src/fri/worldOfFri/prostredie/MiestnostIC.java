@@ -14,8 +14,8 @@ import fri.worldOfFri.questy.ZiskajPredmetQuest;
  */
 public class MiestnostIC extends Miestnost {
     
-    public MiestnostIC() {
-        super("IC - tu byvaju knihy");
+    public MiestnostIC(String popis) {
+        super(popis);
     }
 
     @Override
