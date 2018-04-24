@@ -24,8 +24,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -36,6 +34,7 @@ public class Mapa {
     private Miestnost startovaciaMiestnost;
     private final ArrayList<Miestnost> zoznamMiestnosti;
     private final HashMap<String, Miestnost> miestnosti;
+    private final ArrayList<NacitanyVychod> nacitaneVychody;
 
     /**
      * Vytvori mapu hry - miestnosti.
@@ -46,6 +45,8 @@ public class Mapa {
         this.startovaciaMiestnost = null;
         
         this.miestnosti = new HashMap<String, Miestnost>();
+        
+        this.nacitaneVychody = new ArrayList<NacitanyVychod>();
         
         File suborMapy = new File("mapa.txt");
         try (Scanner citacMapy = new Scanner(suborMapy)) {
@@ -72,6 +73,12 @@ public class Mapa {
             }
         } catch (FileNotFoundException ex) {
             throw new RuntimeException("Nenasiel sa subor s mapou", ex);
+        }
+        
+        for (NacitanyVychod nacitanyVychod : this.nacitaneVychody) {
+            Miestnost zMiestnosti = this.miestnosti.get(nacitanyVychod.getZdrojovaMiestnost());
+            Miestnost doMiestnosti = this.miestnosti.get(nacitanyVychod.getCielovaMiestnost());
+            zMiestnosti.nastavVychod(nacitanyVychod.getSmer(), doMiestnosti);
         }
         
         /*
@@ -195,6 +202,16 @@ public class Mapa {
         String riadokPrikazu;
         do {
             riadokPrikazu = citacMapy.nextLine().trim();
+            
+            if (riadokPrikazu.contains(" => ")) {
+                Scanner citacPrikazu = new Scanner(riadokPrikazu);
+                
+                String smer = citacPrikazu.next();
+                citacPrikazu.next(); // nacitaj sipocku
+                String cielovaMiestnost = citacPrikazu.next();
+                
+                this.nacitaneVychody.add(new NacitanyVychod(nazovMiestnosti, smer, cielovaMiestnost));
+            }
         } while (!riadokPrikazu.equals(""));
         
         this.zoznamMiestnosti.add(miestnost);
