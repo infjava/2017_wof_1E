@@ -19,7 +19,13 @@ import fri.worldOfFri.prostredie.predmety.Navleky;
 import fri.worldOfFri.prostredie.predmety.PredmetMapa;
 import fri.worldOfFri.questy.Quest;
 import fri.worldOfFri.questy.ZiskajPredmetQuest;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,8 +33,9 @@ import java.util.ArrayList;
  */
 public class Mapa {
 
-    private final Miestnost startovaciaMiestnost;
+    private Miestnost startovaciaMiestnost;
     private final ArrayList<Miestnost> zoznamMiestnosti;
+    private final HashMap<String, Miestnost> miestnosti;
 
     /**
      * Vytvori mapu hry - miestnosti.
@@ -36,6 +43,38 @@ public class Mapa {
     public Mapa() {
         this.zoznamMiestnosti = new ArrayList<Miestnost>();
         
+        this.startovaciaMiestnost = null;
+        
+        this.miestnosti = new HashMap<String, Miestnost>();
+        
+        File suborMapy = new File("mapa.txt");
+        try (Scanner citacMapy = new Scanner(suborMapy)) {
+            while (citacMapy.hasNextLine()) {
+                String riadokSDefiniciou = citacMapy.nextLine();
+                
+                Scanner citacRiadkuSDefiniciou = new Scanner(riadokSDefiniciou);
+                String prikaz = citacRiadkuSDefiniciou.next();
+                String parameter = citacRiadkuSDefiniciou.next();
+                
+                switch (prikaz) {
+                    case "miestnost":
+                        this.citajMiestnost(parameter, citacMapy);
+                        break;
+                    case "npc":
+                        this.citajNpc(parameter, citacMapy);
+                        break;
+                    case "start":
+                        this.citajStart(parameter, citacMapy);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException("Nenasiel sa subor s mapou", ex);
+        }
+        
+        /*
         Miestnost terasa = new Miestnost("Terasa - tu byva FRIfest");
         Miestnost vratnica = new Miestnost("Vratnica - tu byva vratnicka");
         Miestnost ic = new MiestnostIC();
@@ -137,6 +176,40 @@ public class Mapa {
         chillZone.nastavVychod("sever", chodbaB);
         
         this.startovaciaMiestnost = terasa;
+        */
+    }
+
+    private void citajMiestnost(String nazovMiestnosti, Scanner citacMapy) {
+        StringBuilder popis = new StringBuilder();
+        String riadokPopisu;
+        do {
+            riadokPopisu = citacMapy.nextLine().trim();
+            
+            popis.append(riadokPopisu);
+            popis.append('\n');
+        } while (!riadokPopisu.equals(""));
+        
+        Miestnost miestnost = new Miestnost(nazovMiestnosti + " - "
+                + popis.toString().trim());
+        
+        String riadokPrikazu;
+        do {
+            riadokPrikazu = citacMapy.nextLine().trim();
+        } while (!riadokPrikazu.equals(""));
+        
+        this.zoznamMiestnosti.add(miestnost);
+        this.miestnosti.put(nazovMiestnosti, miestnost);
+    }
+
+    private void citajNpc(String nazovNpc, Scanner citacMapy) {
+        String riadokPrikazu;
+        do {
+            riadokPrikazu = citacMapy.nextLine().trim();
+        } while (!riadokPrikazu.equals(""));
+    }
+
+    private void citajStart(String nazovMiestnosti, Scanner citacMapy) {
+        this.startovaciaMiestnost = this.miestnosti.get(nazovMiestnosti);
     }
 
     public Miestnost getStartovaciaMiestnost() {

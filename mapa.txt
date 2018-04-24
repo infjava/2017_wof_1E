@@ -61,22 +61,17 @@ miestnost b1
 npc dekan
     dobryDen
         Dobry den
-
         * Dobry! => chcemKavu
         * Hee? => fight
     chcemKavu
         Chcem kavu.
-
         * Okej, zozeniem vam => dobre
         * Co za to? => bageta
         * Aj ja => fight
-
     dobre
         Dobre
-
         * Okej, zozeniem vam => dobre
         * Nechcem => dobre
-    
     fight
         Fight!
 
