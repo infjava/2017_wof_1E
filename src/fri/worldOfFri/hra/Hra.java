@@ -2,7 +2,14 @@ package fri.worldOfFri.hra;
 
 import fri.worldOfFri.prikazy.Prikaz;
 import fri.worldOfFri.prikazy.Parser;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Trieda Hra je hlavna trieda aplikacie "World of FRI".
@@ -25,6 +32,9 @@ import java.io.IOException;
 */
  
 public class Hra  {
+    private static final int SAVE_MAGIC_NUMBER = 1243293261;
+    private static final int SAVE_VERSION = 0;
+    
     private Hrac hrac;
     
     /**
@@ -114,6 +124,12 @@ public class Hra  {
                 return false;
             case "zopakuj":
                 this.zopakujMakro(prikaz);
+                return false;
+            case "save":
+                this.save(prikaz);
+                return false;
+            case "load":
+                this.load(prikaz);
                 return false;
             default:
                 return false;
@@ -216,6 +232,47 @@ public class Hra  {
             Parser.getInstancia().zopakujMakro(nazovMakra);
         } catch (IOException ex) {
             System.out.println("Chyba citania");
+        }
+    }
+
+    private void save(Prikaz prikaz) {
+        File suborSoSave = new File(prikaz.getParameter() + ".sav");
+        
+        try (DataOutputStream zapisovacSave = new DataOutputStream(new FileOutputStream(suborSoSave))) {
+            zapisovacSave.writeInt(Hra.SAVE_MAGIC_NUMBER);
+            zapisovacSave.writeInt(Hra.SAVE_VERSION);
+            
+            this.hrac.save(zapisovacSave);
+           
+            System.out.println("Ulozil si hru do " + suborSoSave.getName());
+        } catch (IOException ex) {
+            System.out.println("Nepodarilo sa ulozit hru");
+        }
+    }
+
+    private void load(Prikaz prikaz) {
+        File suborSoSave = new File(prikaz.getParameter() + ".sav");
+        
+        try (DataInputStream citacSave = new DataInputStream(new FileInputStream(suborSoSave))) {
+            int magicNumber = citacSave.readInt();
+            if (magicNumber != Hra.SAVE_MAGIC_NUMBER) {
+                System.out.println("Chybny save subor");
+                return;
+            }
+            
+            int saveVersion = citacSave.readInt();
+            if (saveVersion > Hra.SAVE_VERSION) {
+                System.out.println("Prilis vysoka verzia save, skus novsiu verziu hry");
+                return;
+            }
+            
+            this.hrac.load(citacSave, saveVersion);
+            
+            System.out.println("Nacital si hru z " + suborSoSave.getName());
+            
+            this.hrac.getAktualnaMiestnost().vypisInfo();
+        } catch (IOException ex) {
+            System.out.println("Nepodarilo sa hru nacitat");
         }
     }
 }

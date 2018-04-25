@@ -14,7 +14,8 @@ public class NazvyPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
         "chod", "ukonci", "pomoc", "zober", "staty",
-        "zahod", "pouzi", "hovor", "nahraj", "zopakuj"
+        "zahod", "pouzi", "hovor", "nahraj", "zopakuj",
+        "load", "save"
     };
 
     /**

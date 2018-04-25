@@ -12,6 +12,9 @@ import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.predmety.Penazenka;
 import fri.worldOfFri.questy.Quest;
 import fri.worldOfFri.questy.ZiskajPredmetQuest;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -187,5 +190,14 @@ public class Hrac {
                 quest.skontrolujSplnenie(this);
             }
         }
+    }
+
+    void save(DataOutputStream zapisovacSave) throws IOException {
+        zapisovacSave.writeUTF(this.aktualnaMiestnost.getNazov());
+    }
+
+    void load(DataInputStream citacSave, int saveVersion) throws IOException {
+        String nazovAktualnejMiestnosti = citacSave.readUTF();
+        this.aktualnaMiestnost = this.mapa.getMiestnost(nazovAktualnejMiestnosti);
     }
 }
