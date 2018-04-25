@@ -196,6 +196,11 @@ public class Hrac {
         zapisovacSave.writeUTF(this.aktualnaMiestnost.getNazov());
         
         zapisovacSave.writeInt(this.hungerBar);
+        
+        zapisovacSave.writeInt(this.inventar.size());
+        for (IPredmet predmet : this.inventar.values()) {
+            zapisovacSave.writeUTF(predmet.getNazov());
+        }
     }
 
     void load(DataInputStream citacSave, int saveVersion) throws IOException {
@@ -204,6 +209,17 @@ public class Hrac {
         
         if (saveVersion >= 1) {
             this.hungerBar = citacSave.readInt();
+        }
+        
+        if (saveVersion >= 2) {
+            this.inventar.clear();
+            
+            int pocetPredmetov = citacSave.readInt();
+            for (int i = 0; i < pocetPredmetov; i++) {
+                String nazovPredmetu = citacSave.readUTF();
+                IPredmet predmet = this.mapa.getPredmet(nazovPredmetu);
+                this.pridajPredmet(predmet);
+            }
         }
     }
 }

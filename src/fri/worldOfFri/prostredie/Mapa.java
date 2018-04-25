@@ -12,10 +12,13 @@ import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreObchod;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSPredmetom;
 import fri.worldOfFri.prostredie.npc.PoziciaVRozhovoreSQuestom;
 import fri.worldOfFri.prostredie.predmety.Bageta;
+import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.predmety.Isic;
 import fri.worldOfFri.prostredie.predmety.Navigacia;
 import fri.worldOfFri.prostredie.predmety.Peniaze;
 import fri.worldOfFri.prostredie.predmety.Navleky;
+import fri.worldOfFri.prostredie.predmety.Penazenka;
+import fri.worldOfFri.prostredie.predmety.Predmet;
 import fri.worldOfFri.prostredie.predmety.PredmetMapa;
 import fri.worldOfFri.questy.Quest;
 import fri.worldOfFri.questy.ZiskajPredmetQuest;
@@ -190,6 +193,18 @@ public class Mapa {
         
         this.startovaciaMiestnost = terasa;
         */
+    }
+    
+    public IPredmet getPredmet(String nazovPredmetu) {
+        switch (nazovPredmetu) {
+            case "navleky":
+                return new Navleky();
+            case "penazenka":
+                return new Penazenka();
+            // ... dalsie predmety
+            default:
+                return new Predmet(nazovPredmetu);
+        }
     }
 
     private void citajMiestnost(String nazovMiestnosti, String triedaMiestnosti, Scanner citacMapy) {
