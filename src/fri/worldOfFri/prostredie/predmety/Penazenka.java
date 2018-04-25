@@ -6,6 +6,9 @@
 package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 
 public class Penazenka implements IPredmet {
@@ -40,6 +43,18 @@ public class Penazenka implements IPredmet {
         else {
             return false;
         }
+    }
+
+    @Override
+    public void zapisStav(DataOutputStream zapisovacSave)
+            throws IOException {
+        zapisovacSave.writeInt(this.mnozstvoPenazi);
+    }
+
+    @Override
+    public void nacitajStav(DataInputStream citacSave)
+            throws IOException {
+        this.mnozstvoPenazi = citacSave.readInt();
     }
     
 }

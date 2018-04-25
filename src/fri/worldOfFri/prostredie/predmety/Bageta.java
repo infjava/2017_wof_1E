@@ -6,6 +6,8 @@
 package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 
 public class Bageta implements IPredmet {
@@ -26,5 +28,15 @@ public class Bageta implements IPredmet {
     @Override
     public boolean jeZahoditelny() {
         return true;
+    }
+
+    @Override
+    public void zapisStav(DataOutputStream zapisovacSave) {
+        
+    }
+
+    @Override
+    public void nacitajStav(DataInputStream citacSave) {
+        
     }
 }

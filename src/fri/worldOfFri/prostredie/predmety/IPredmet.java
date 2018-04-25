@@ -6,6 +6,9 @@
 package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  *
@@ -18,4 +21,8 @@ public interface IPredmet {
     void pouziSa(Hrac hrac);
     
     boolean jeZahoditelny();
+
+    void zapisStav(DataOutputStream zapisovacSave) throws IOException;
+
+    void nacitajStav(DataInputStream citacSave) throws IOException;
 }

@@ -6,6 +6,8 @@
 package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 
 public class Isic implements IPredmet {
@@ -23,6 +25,16 @@ public class Isic implements IPredmet {
     @Override
     public boolean jeZahoditelny() {
         return true;
+    }
+
+    @Override
+    public void zapisStav(DataOutputStream zapisovacSave) {
+        
+    }
+
+    @Override
+    public void nacitajStav(DataInputStream citacSave) {
+        
     }
     
 }

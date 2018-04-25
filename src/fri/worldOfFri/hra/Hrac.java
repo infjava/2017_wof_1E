@@ -200,6 +200,7 @@ public class Hrac {
         zapisovacSave.writeInt(this.inventar.size());
         for (IPredmet predmet : this.inventar.values()) {
             zapisovacSave.writeUTF(predmet.getNazov());
+            predmet.zapisStav(zapisovacSave);
         }
     }
 
@@ -219,6 +220,9 @@ public class Hrac {
                 String nazovPredmetu = citacSave.readUTF();
                 IPredmet predmet = this.mapa.getPredmet(nazovPredmetu);
                 this.pridajPredmet(predmet);
+                if (saveVersion >= 3) {
+                    predmet.nacitajStav(citacSave);
+                }
             }
         }
     }

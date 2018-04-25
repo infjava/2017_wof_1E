@@ -7,6 +7,9 @@ package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
 import fri.worldOfFri.prostredie.Miestnost;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 
 public class PredmetMapa implements IPredmet {
@@ -33,6 +36,16 @@ public class PredmetMapa implements IPredmet {
     @Override
     public boolean jeZahoditelny() {
         return true;
+    }
+
+    @Override
+    public void zapisStav(DataOutputStream zapisovacSave) {
+        
+    }
+
+    @Override
+    public void nacitajStav(DataInputStream citacSave) {
+        
     }
     
 }
