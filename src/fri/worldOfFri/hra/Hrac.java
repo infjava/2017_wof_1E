@@ -194,10 +194,16 @@ public class Hrac {
 
     void save(DataOutputStream zapisovacSave) throws IOException {
         zapisovacSave.writeUTF(this.aktualnaMiestnost.getNazov());
+        
+        zapisovacSave.writeInt(this.hungerBar);
     }
 
     void load(DataInputStream citacSave, int saveVersion) throws IOException {
         String nazovAktualnejMiestnosti = citacSave.readUTF();
         this.aktualnaMiestnost = this.mapa.getMiestnost(nazovAktualnejMiestnosti);
+        
+        if (saveVersion >= 1) {
+            this.hungerBar = citacSave.readInt();
+        }
     }
 }

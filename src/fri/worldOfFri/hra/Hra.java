@@ -33,7 +33,7 @@ import java.util.logging.Logger;
  
 public class Hra  {
     private static final int SAVE_MAGIC_NUMBER = 1243293261;
-    private static final int SAVE_VERSION = 0;
+    private static final int SAVE_VERSION = 1;
     
     private Hrac hrac;
     
